@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { Link } from 'react-router-dom'
 import { useAuth } from '../context/AuthContext'
 
 export default function Login() {
@@ -37,12 +38,13 @@ export default function Login() {
             <input placeholder='Password' type='password' value={userCreds.password} onChange={(e) => {
                 updatePassword(e)
             }}></input>
-            <button onClick={handleSubmit}>
+            <Link to="/">
                 <p>Submit</p>
-            </button>
+            </Link>
             <button onClick={() => setCreateAccount(!createAccount)}>
                 <p>{createAccount ? 'Sign In' : 'Sign Up'}</p>
             </button>
+            <Link to="/blog">blooog</Link>
         </div>
     )
 }

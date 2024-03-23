@@ -1,3 +1,8 @@
+/**
+ * importing the necessary tools to run app
+ * <BrowserRouter></BrowserRouter> needs to wrap around the entire app
+ */
+
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import App from './App.jsx'

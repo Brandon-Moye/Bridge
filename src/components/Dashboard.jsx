@@ -19,8 +19,6 @@ export default function Dashboard() {
             <p>welcome to the dashboard</p>
             <button onClick={handleIncrement}>Increment database</button>
             <button onClick={logout}>Logout</button>
-            <button onClick={() => { navigate('/Blog') }}>Blog</button>
-
         </div>
     )
 }

@@ -1,5 +1,5 @@
 # Bridge
 
 ## Bridge the gap
-### with
+with
 ## Bridge the app

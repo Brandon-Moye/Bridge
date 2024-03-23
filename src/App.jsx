@@ -3,8 +3,6 @@
  * NEED to brush up on dynamic routes
  */
 
-
-import { useState } from 'react'
 import { useAuth } from './context/AuthContext'
 import Login from './components/Login'
 import Dashboard from './components/Dashboard'
@@ -19,9 +17,16 @@ function App() {
   return (
     <div>
       <Routes>
+        <Route
+          exact
+          path="/"
+          element={
+            <PrivateRoute>
+              <Dashboard />
+            </PrivateRoute>
+          } />
         <Route path="/login" element={<Login />} />
-        <Route path="/blog" element={<Blog />}></Route>
-        <Route exact path="/" element={<PrivateRoute><Dashboard /></PrivateRoute>} ></Route>
+        <Route path="/blog" element={<Blog />} />
       </Routes>
       {/* {currentUser ? (<Dashboard />) : (<Login />)} */}
     </div>

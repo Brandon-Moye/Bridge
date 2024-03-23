@@ -1,15 +1,17 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+import { useAuth } from './context/AuthContext'
+import Login from './components/Login'
+import Dashboard from './components/Dashboard'
+import { Route, Routes } from "react-router-dom"
 import './App.css'
 
 function App() {
-  const [count, setCount] = useState(0)
+  const { currentUser } = useAuth()
 
   return (
-    <>
-      <h1>Bridge</h1>
-    </>
+    <div>
+      {currentUser ? (<Dashboard />) : (<Login />)}
+    </div>
   )
 }
 

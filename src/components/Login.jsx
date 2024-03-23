@@ -4,7 +4,6 @@ import { useAuth } from '../context/AuthContext'
 export default function Login() {
     const [createAccount, setCreateAccount] = useState(false)
     const [userCreds, setUserCreds] = useState({ email: '', password: '' })
-
     const { signup, login } = useAuth()
 
     function updateEmail(e) {

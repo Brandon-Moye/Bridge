@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 export default function Blog() {
+    const blogPost = data.map
     return (
         <div>
             <h3>Post #1 Introductions</h3>

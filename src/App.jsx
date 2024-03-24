@@ -10,7 +10,6 @@ import Blog from './components/Blog'
 import BlogArray from './components/BlogArray'
 import PrivateRoute from './components/PrivateRoute'
 import { Route, Routes } from "react-router-dom"
-import './App.css'
 
 function App() {
   const blogComponent = BlogArray.map(post => (

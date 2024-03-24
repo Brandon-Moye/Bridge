@@ -8,9 +8,9 @@ import Login from './components/Login'
 import Dashboard from './components/Dashboard'
 import Blog from './components/Blog'
 import BlogArray from './components/BlogArray'
+import NavBar from './components/NavBar'
 import PrivateRoute from './components/PrivateRoute'
 import { Route, Routes } from "react-router-dom"
-import './App.css'
 
 function App() {
   const blogComponent = BlogArray.map(post => (
@@ -18,7 +18,7 @@ function App() {
   ))
   const { currentUser } = useAuth()
   return (
-    <div>
+    <div className="font-noto">
       <Routes>
         <Route
           exact
@@ -29,7 +29,7 @@ function App() {
             </PrivateRoute>
           } />
         <Route path="/login" element={<Login />} />
-        <Route path="/blog" element={blogComponent} />
+        <Route path="/blog" element={blogComponent}  />
       </Routes>
     </div>
   )

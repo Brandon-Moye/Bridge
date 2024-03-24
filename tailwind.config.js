@@ -1,12 +1,21 @@
 /** @type {import('tailwindcss').Config} */
+
+const defaultTheme = require('tailwindcss/defaultTheme')
+
 export default {
   content: [
     "./index.html",
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    colors: {
-      'mainColor': '#32CD23'
+    extend: {
+      colors: {
+        'mainColor': '#32CD23'
+      },
+      fontFamily: {
+        noto: ["Noto Sans Mono"]
+      }
+  
     }
   },
   plugins: [],

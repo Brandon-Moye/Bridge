@@ -13,6 +13,9 @@ import { Route, Routes } from "react-router-dom"
 import './App.css'
 
 function App() {
+  const blogComponent = BlogArray.map(post => (
+    <Blog key={post.postNum} post={post} />
+  ))
   const { currentUser } = useAuth()
   return (
     <div>
@@ -26,11 +29,8 @@ function App() {
             </PrivateRoute>
           } />
         <Route path="/login" element={<Login />} />
-        <Route path="/blog" element={BlogArray.map(post => (
-          <Blog key={post.postNum} post={post} />
-        ))} />
+        <Route path="/blog" element={blogComponent} />
       </Routes>
-      {/* {currentUser ? (<Dashboard />) : (<Login />)} */}
     </div>
   )
 }

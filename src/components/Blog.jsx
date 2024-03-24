@@ -3,7 +3,8 @@ const Blog = ({ post }) => {
     return (
         <div className="blogPost">
             <h2>{post.title}</h2>
-            <p>{post.date}</p>
+            <h3>{post.date}</h3>
+            <p>{post.postType}</p>
             <p>{post.textBody}</p>
         </div>
     )

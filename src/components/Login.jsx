@@ -40,7 +40,7 @@ export default function Login() {
   return (
     <div className="loginPageWrapper">
       <form onSubmit={handleSubmit} className="loginForm">
-        <h3 className="">Welcome!</h3>
+        <h3 className="welcomeTitle">Welcome!</h3>
         <label className="emailLabel" htmlFor="">
           email
         </label>
@@ -64,15 +64,18 @@ export default function Login() {
             updatePassword(e);
           }}
         ></input>
+
         <button className="loginButton" type="submit">
           Login
         </button>
         <Link className="signupLink">Signup</Link>
         <Link className="forgotPasswordLink">Forgot Password?</Link>
       </form>
-      <Link className="blogLink" to="/blog">
-        Check out the Blog
-      </Link>
+      <div className="blogLinkWrapper">
+        <Link className="blogLink" to="/blog">
+          Check out the Blog
+        </Link>
+      </div>
     </div>
   );
 }

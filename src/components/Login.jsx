@@ -1,35 +1,24 @@
-import React, { useState } from "react";
-import { Link, Navigate, useNavigate } from "react-router-dom";
+import React, { useRef, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 import "./Login.css";
 
 export default function Login() {
+  const emailRef = useRef();
+  const passwordRef = useRef();
+  const { login } = useAuth();
+
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
-  const [createAccount, setCreateAccount] = useState(false);
-  const [userCreds, setUserCreds] = useState({ email: "", password: "" });
-  const { signup, login } = useAuth();
   const navigate = useNavigate();
-
-  function updateEmail(e) {
-    setUserCreds({ ...userCreds, email: e.target.value });
-  }
-
-  function updatePassword(e) {
-    setUserCreds({ ...userCreds, password: e.target.value });
-  }
 
   async function handleSubmit(e) {
     e.preventDefault();
-    // prevents signup if form not completed
-    if (!userCreds.email || !userCreds.password) {
-      return;
-    }
 
     try {
       setError("");
       setLoading(true);
-      await login(userCreds.email, userCreds.password);
+      await login(emailRef.current.value, passwordRef.current.value);
       navigate("/");
     } catch {
       setError("Failed to sign in, please check your email or password");
@@ -47,10 +36,7 @@ export default function Login() {
         <input
           className="emailInput"
           placeholder="Email"
-          value={userCreds.email}
-          onChange={(e) => {
-            updateEmail(e);
-          }}
+          ref={emailRef}
         ></input>
         <label className="passwordLabel" htmlFor="">
           password
@@ -59,13 +45,10 @@ export default function Login() {
           className="passwordInput"
           placeholder="Password"
           type="password"
-          value={userCreds.password}
-          onChange={(e) => {
-            updatePassword(e);
-          }}
+          ref={passwordRef}
         ></input>
 
-        <button className="loginButton" type="submit">
+        <button className="loginButton" type="submit" disabled={loading}>
           Login
         </button>
         <Link className="signupLink" to="/signup">Signup</Link>

@@ -65,7 +65,7 @@ export default function Signup() {
       Signup
     </button>
     <Link className="loginLink">Login</Link>
-    <Link className="forgotPasswordLink" to="forgotPassword">Forgot Password?</Link>
+    <Link className="forgotPasswordLink" to="/forgotPassword">Forgot Password?</Link>
   </form>
   <div className="blogLinkWrapper">
     <Link className="blogLink" to="/blog">

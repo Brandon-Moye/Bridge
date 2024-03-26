@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Link, Navigate, useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
+import "./Login.css";
 
 export default function Login() {
   const [error, setError] = useState("");
@@ -37,38 +38,41 @@ export default function Login() {
   }
 
   return (
-    <form
-      onSubmit={handleSubmit}
-      className="loginForm grid grid-cols-2 grid-rows-7"
-    >
-      <h3 className="col-span-2">Welcome</h3>
-      <label className="col-span-2" htmlFor="">
-        email
-      </label>
-      <input
-        className="emailInput col-span-2"
-        placeholder="Email"
-        value={userCreds.email}
-        onChange={(e) => {
-          updateEmail(e);
-        }}
-      ></input>
-      <label className="col-span-2" htmlFor="">
-        password
-      </label>
-      <input
-        className="col-span-2"
-        placeholder="Password"
-        type="password"
-        value={userCreds.password}
-        onChange={(e) => {
-          updatePassword(e);
-        }}
-      ></input>
-      <button className="col-span-2" type="submit">
-        Login
-      </button>
-      <Link to="/blog">blooog</Link>
-    </form>
+    <div className="loginPageWrapper">
+      <form onSubmit={handleSubmit} className="loginForm">
+        <h3 className="">Welcome!</h3>
+        <label className="emailLabel" htmlFor="">
+          email
+        </label>
+        <input
+          className="emailInput"
+          placeholder="Email"
+          value={userCreds.email}
+          onChange={(e) => {
+            updateEmail(e);
+          }}
+        ></input>
+        <label className="passwordLabel" htmlFor="">
+          password
+        </label>
+        <input
+          className="passwordInput"
+          placeholder="Password"
+          type="password"
+          value={userCreds.password}
+          onChange={(e) => {
+            updatePassword(e);
+          }}
+        ></input>
+        <button className="loginButton" type="submit">
+          Login
+        </button>
+        <Link className="signupLink">Signup</Link>
+        <Link className="forgotPasswordLink">Forgot Password?</Link>
+      </form>
+      <Link className="blogLink" to="/blog">
+        Check out the Blog
+      </Link>
+    </div>
   );
 }

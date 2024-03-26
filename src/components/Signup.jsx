@@ -64,7 +64,7 @@ export default function Signup() {
     <button disabled={loading} className="signupButton" type="submit">
       Signup
     </button>
-    <Link className="loginLink">Login</Link>
+    <Link className="loginLink" to="/login">Login</Link>
     <Link className="forgotPasswordLink" to="/forgotPassword">Forgot Password?</Link>
   </form>
   <div className="blogLinkWrapper">

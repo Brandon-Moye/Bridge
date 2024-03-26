@@ -1,0 +1,19 @@
+.loginForm {
+  margin: 3rem 3rem 3rem 3rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.5rem;
+}
+.welcomeTitle,
+.emailLabel,
+.emailInput,
+.passwordLabel,
+.passwordInput,
+.loginButton {
+  grid-column: 1/-1;
+}
+
+.blogLinkWrapper {
+  display: flex;
+  justify-content: center;
+}

@@ -1,62 +1,81 @@
-import React, { useState } from 'react'
-import { Link, Navigate, useNavigate } from 'react-router-dom'
-import { useAuth } from '../context/AuthContext'
+import React, { useState } from "react";
+import { Link, Navigate, useNavigate } from "react-router-dom";
+import { useAuth } from "../context/AuthContext";
+import "./Login.css";
 
 export default function Login() {
-    const [error, setError] = useState("")
-    const [loading, setLoading] = useState(false)
-    const [createAccount, setCreateAccount] = useState(false)
-    const [userCreds, setUserCreds] = useState({ email: '', password: '' })
-    const { signup, login } = useAuth()
-    const navigate = useNavigate()
+  const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [createAccount, setCreateAccount] = useState(false);
+  const [userCreds, setUserCreds] = useState({ email: "", password: "" });
+  const { signup, login } = useAuth();
+  const navigate = useNavigate();
 
-    function updateEmail(e) {
-        setUserCreds({ ...userCreds, email: e.target.value })
+  function updateEmail(e) {
+    setUserCreds({ ...userCreds, email: e.target.value });
+  }
+
+  function updatePassword(e) {
+    setUserCreds({ ...userCreds, password: e.target.value });
+  }
+
+  async function handleSubmit(e) {
+    e.preventDefault();
+    // prevents signup if form not completed
+    if (!userCreds.email || !userCreds.password) {
+      return;
     }
 
-    function updatePassword(e) {
-        setUserCreds({ ...userCreds, password: e.target.value })
+    try {
+      setError("");
+      setLoading(true);
+      await login(userCreds.email, userCreds.password);
+      navigate("/");
+    } catch {
+      setError("Failed to sign in, please check your email or password");
     }
+    setLoading(false);
+  }
 
-    async function handleSubmit(e) {
-        e.preventDefault()
-        // prevents signup if form not completed
-        if (!userCreds.email || !userCreds.password) { return }
+  return (
+    <div className="loginPageWrapper">
+      <form onSubmit={handleSubmit} className="loginForm">
+        <h3 className="welcomeTitle">Welcome!</h3>
+        <label className="emailLabel" htmlFor="">
+          email
+        </label>
+        <input
+          className="emailInput"
+          placeholder="Email"
+          value={userCreds.email}
+          onChange={(e) => {
+            updateEmail(e);
+          }}
+        ></input>
+        <label className="passwordLabel" htmlFor="">
+          password
+        </label>
+        <input
+          className="passwordInput"
+          placeholder="Password"
+          type="password"
+          value={userCreds.password}
+          onChange={(e) => {
+            updatePassword(e);
+          }}
+        ></input>
 
-        // if (createAccount) {
-        //     // recommended to add password regex check in here
-        //     console.log('Registering')
-        //     signup(userCreds.email, userCreds.password)
-        // } else {
-        //     console.log('Logging in')
-        //     login(userCreds.email, userCreds.password)
-        //     navigate("/")
-        // }
-
-        try {
-            setError("");
-            setLoading(true);
-            await login(userCreds.email, userCreds.password);
-            navigate("/");
-        } catch {
-            setError("Failed to sign in, please check your email or password");
-        }
-        setLoading(false);
-    }
-
-    return (
-        <form onSubmit={handleSubmit}>
-            <input placeholder='Email' value={userCreds.email} onChange={(e) => {
-                updateEmail(e)
-            }}></input>
-            <input placeholder='Password' type='password' value={userCreds.password} onChange={(e) => {
-                updatePassword(e)
-            }}></input>
-            <button type="submit">Submit</button>
-            <button onClick={() => setCreateAccount(!createAccount)}>
-                <p>{createAccount ? 'Sign In' : 'Sign Up'}</p>
-            </button>
-            <Link to="/blog">blooog</Link>
-        </form>
-    )
+        <button className="loginButton" type="submit">
+          Login
+        </button>
+        <Link className="signupLink">Signup</Link>
+        <Link className="forgotPasswordLink">Forgot Password?</Link>
+      </form>
+      <div className="blogLinkWrapper">
+        <Link className="blogLink" to="/blog">
+          Check out the Blog
+        </Link>
+      </div>
+    </div>
+  );
 }

@@ -7,7 +7,7 @@ import {
   signOut,
   updateEmail,
   updatePassword,
-  onAuthStateChanged,
+  // onAuthStateChanged,
 } from "firebase/auth";
 
 const AuthContext = React.createContext();
@@ -40,7 +40,7 @@ export function AuthProvider({ children }) {
   }
 
   function userUpdateEmail(email) {
-    return updatePassword(auth.currentUser, password)
+    return updatePassword(auth.currentUser, password);
   }
 
   function userUpdatePassword(password) {
@@ -48,11 +48,11 @@ export function AuthProvider({ children }) {
   }
 
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (user) => {
-      // This is where you could fetch generic user data from firebase
+    const unsubscribe = auth.onAuthStateChanged((user) => {
       setCurrentUser(user);
       setLoading(false);
     });
+
     return unsubscribe;
   }, []);
 
@@ -63,8 +63,12 @@ export function AuthProvider({ children }) {
     login,
     resetPassword,
     userUpdateEmail,
-    userUpdatePassowrd,
+    userUpdatePassword,
   };
 
-  return <AuthContext.Provider value={value}>{!loading && children}</AuthContext.Provider>;
+  return (
+    <AuthContext.Provider value={value}>
+      {!loading && children}
+    </AuthContext.Provider>
+  );
 }

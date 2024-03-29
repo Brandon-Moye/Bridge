@@ -6,7 +6,7 @@
 import { useAuth } from "./context/AuthContext";
 import Login from "./components/Login";
 import Signup from "./components/Signup";
-import ForgotPassword from "./components/ForgotPassword"
+import ForgotPassword from "./components/ForgotPassword";
 import Dashboard from "./components/Dashboard";
 import Blog from "./components/Blog";
 import BlogArray from "./components/BlogArray";

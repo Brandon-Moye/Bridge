@@ -15,9 +15,11 @@ async function doLoginRealm() {
 
 async function doGetData() {
   // TODO: define a function in realm called getData
-  return await realm.currentUser.functions.getAllData(
-    "573a1390f29313caabcd42e8"
-  );
+  return await realm.currentUser.functions.getAllPostsTest();
 }
 
-export { realm, doLoginRealm, doGetData };
+async function doUploadPost(postData) {
+  return await realm.currentUser.functions.uploadPost(postData);
+}
+
+export { realm, doLoginRealm, doGetData, doUploadPost };

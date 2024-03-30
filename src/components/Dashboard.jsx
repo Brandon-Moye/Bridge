@@ -59,7 +59,11 @@ export default function Dashboard() {
       <p>{isLoadingData ? "loading..." : "loaded!"}</p>
       <p>{data ? "I got it!" : "I don't got it"}</p>
       {data.map((data) => {
-        return <p key={data._id}>{data.post}</p>;
+        return (
+          <p key={data._id}>
+            {data.post} by: {data.userId}
+          </p>
+        );
       })}
       <form onSubmit={handleSubmit} action="">
         <textarea

@@ -11,6 +11,7 @@ export default function Dashboard() {
   const { data, isLoadingData } = useContext(DataContext);
   const [error, setError] = useState();
   const [postContent, setPostContent] = useState(""); //state to hold post
+  // const [currentUserWhoPosted, setCurrentUserWhoPosted] = useState("");
   const navigate = useNavigate();
 
   const { logout, currentUser } = useAuth();
@@ -43,8 +44,9 @@ export default function Dashboard() {
         throw new Error("Post content cannot be empty.");
       }
 
-      await doUploadPost({ post: postContent }); // Pass an object with the 'post' property
+      await doUploadPost({ post: postContent, userWhoPosted: currentUser.uid }); // Pass an object with the 'post' property
       setPostContent(""); // Clear textarea content after successful submission
+      // console.log(currentUser.uid);
     } catch (error) {
       console.error("Error uploading post:", error);
       setError(error.message);

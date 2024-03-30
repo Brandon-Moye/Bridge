@@ -18,8 +18,11 @@ async function doGetData() {
   return await realm.currentUser.functions.getAllPostsTest();
 }
 
-async function doUploadPost(postData) {
-  return await realm.currentUser.functions.uploadPost(postData);
+async function doUploadPost(postData, userWhoPostedData) {
+  return await realm.currentUser.functions.uploadPost(
+    postData,
+    userWhoPostedData
+  );
 }
 
 export { realm, doLoginRealm, doGetData, doUploadPost };

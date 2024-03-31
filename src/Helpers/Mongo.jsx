@@ -18,6 +18,12 @@ async function doGetData() {
   return await realm.currentUser.functions.getAllPostsTest();
 }
 
+async function doGetYourPostsOnly(userId) {
+  return await realm.currentUser.functions.getYourPostsOnly(
+    "QDsshy85yWUM8Z953g3jmyiZi223"
+  );
+}
+
 async function doUploadPost(postData, userWhoPostedData) {
   return await realm.currentUser.functions.uploadPost(
     postData,
@@ -25,4 +31,4 @@ async function doUploadPost(postData, userWhoPostedData) {
   );
 }
 
-export { realm, doLoginRealm, doGetData, doUploadPost };
+export { realm, doLoginRealm, doGetData, doUploadPost, doGetYourPostsOnly };

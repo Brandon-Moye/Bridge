@@ -11,12 +11,12 @@ import { DataProvider } from "./Helpers/DataProvider.jsx";
 import { BrowserRouter } from "react-router-dom";
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <DataProvider>
-      <BrowserRouter>
-        <AuthProvider>
+    <AuthProvider>
+      <DataProvider>
+        <BrowserRouter>
           <App />
-        </AuthProvider>
-      </BrowserRouter>
-    </DataProvider>
+        </BrowserRouter>
+      </DataProvider>
+    </AuthProvider>
   </React.StrictMode>
 );

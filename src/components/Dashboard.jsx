@@ -8,14 +8,14 @@ import { useState, useContext } from "react";
 import { async } from "@firebase/util";
 
 export default function Dashboard() {
-  const { data, isLoadingData } = useContext(DataContext);
+  const { data, isLoadingData, justYourData } = useContext(DataContext);
   const [error, setError] = useState();
   const [postContent, setPostContent] = useState(""); //state to hold post
   // const [currentUserWhoPosted, setCurrentUserWhoPosted] = useState("");
   const navigate = useNavigate();
 
   const { logout, currentUser } = useAuth();
-
+  console.log(justYourData);
   async function handleIncrement() {
     const userRef = doc(db, "users", currentUser.uid);
     await setDoc(

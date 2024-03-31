@@ -19,9 +19,7 @@ async function doGetData() {
 }
 
 async function doGetYourPostsOnly(userId) {
-  return await realm.currentUser.functions.getYourPostsOnly(
-    "QDsshy85yWUM8Z953g3jmyiZi223"
-  );
+  return await realm.currentUser.functions.getYourPostsOnly(userId);
 }
 
 async function doUploadPost(postData, userWhoPostedData) {

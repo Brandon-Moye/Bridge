@@ -1,10 +1,13 @@
 import React, { useState, useEffect } from "react";
+import { useAuth } from "../context/AuthContext";
 
 import { doLoginRealm, doGetData, doGetYourPostsOnly } from "../Helpers/Mongo";
 
 const DataContext = React.createContext();
 
 const DataProvider = ({ children }) => {
+  const { logout, currentUser } = useAuth();
+
   const [isLoadingData, setIsLoadingData] = useState(true);
   const [data, setData] = useState([]);
   const [justYourData, setJustYourData] = useState([]);
@@ -16,9 +19,7 @@ const DataProvider = ({ children }) => {
 
       await doLoginRealm();
       const data = await doGetData();
-      const justYourData = await doGetYourPostsOnly(
-        "QDsshy85yWUM8Z953g3jmyiZi223"
-      );
+      const justYourData = await doGetYourPostsOnly(currentUser.uid);
       setData(data);
       setJustYourData(justYourData);
       setIsLoadingData(false);

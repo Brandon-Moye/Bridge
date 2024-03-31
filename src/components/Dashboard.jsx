@@ -24,6 +24,7 @@ export default function Dashboard() {
       { merge: true }
     );
   }
+  // console.log(currentUser.uid);
 
   async function handleLogout() {
     setError("");
@@ -46,7 +47,7 @@ export default function Dashboard() {
 
       await doUploadPost({ post: postContent, userWhoPosted: currentUser.uid }); // Pass an object with the 'post' property
       setPostContent(""); // Clear textarea content after successful submission
-      // console.log(currentUser.uid);
+      console.log(currentUser.uid);
     } catch (error) {
       console.error("Error uploading post:", error);
       setError(error.message);
@@ -58,12 +59,15 @@ export default function Dashboard() {
       <p>welcome to the dashboard</p>
       <p>{isLoadingData ? "loading..." : "loaded!"}</p>
       <p>{data ? "I got it!" : "I don't got it"}</p>
-      {data.map((data) => {
+      {/* {data.map((data) => {
         return (
           <p key={data._id}>
             {data.post} by: {data.userId}
           </p>
         );
+      })} */}
+      {justYourData.map((justYourData) => {
+        return <p>{justYourData}</p>;
       })}
       <form onSubmit={handleSubmit} action="">
         <textarea

@@ -11,6 +11,7 @@ const DataProvider = ({ children }) => {
   const [isLoadingData, setIsLoadingData] = useState(true);
   const [data, setData] = useState([]);
   const [justYourData, setJustYourData] = useState([]);
+  const [submitTrigger, setSubmitTrigger] = useState(false);
 
   useEffect(() => {
     async function loadData() {
@@ -26,7 +27,12 @@ const DataProvider = ({ children }) => {
     }
 
     loadData();
-  }, []);
+  }, [submitTrigger]);
+
+  // Function to trigger useEffect on post submit
+  const handleSubmitTrigger = () => {
+    setSubmitTrigger((prevState) => !prevState);
+  };
 
   return (
     <DataContext.Provider
@@ -34,6 +40,7 @@ const DataProvider = ({ children }) => {
         isLoadingData,
         data,
         justYourData,
+        handleSubmitTrigger,
       }}
     >
       {children}

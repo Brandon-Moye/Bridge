@@ -8,14 +8,15 @@ import { useState, useContext } from "react";
 import { async } from "@firebase/util";
 
 export default function Dashboard() {
-  const { data, isLoadingData, justYourData } = useContext(DataContext);
+  const { data, isLoadingData, justYourData, handleSubmitTrigger } =
+    useContext(DataContext);
   const [error, setError] = useState();
   const [postContent, setPostContent] = useState(""); //state to hold post
   // const [currentUserWhoPosted, setCurrentUserWhoPosted] = useState("");
   const navigate = useNavigate();
 
   const { logout, currentUser } = useAuth();
-  console.log(justYourData);
+  // console.log(justYourData);
   async function handleIncrement() {
     const userRef = doc(db, "users", currentUser.uid);
     await setDoc(
@@ -47,6 +48,7 @@ export default function Dashboard() {
 
       await doUploadPost({ post: postContent, userWhoPosted: currentUser.uid }); // Pass an object with the 'post' property
       setPostContent(""); // Clear textarea content after successful submission
+      handleSubmitTrigger(); // trigger useEffect in DataProvider
       console.log(currentUser.uid);
     } catch (error) {
       console.error("Error uploading post:", error);

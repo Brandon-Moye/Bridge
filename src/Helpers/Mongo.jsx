@@ -29,4 +29,15 @@ async function doUploadPost(postData, userWhoPostedData) {
   );
 }
 
-export { realm, doLoginRealm, doGetData, doUploadPost, doGetYourPostsOnly };
+async function doUserEditsPost(postId) {
+  return await realm.currentUser.functions.userEditsPost(postId);
+}
+
+export {
+  realm,
+  doLoginRealm,
+  doGetData,
+  doUploadPost,
+  doGetYourPostsOnly,
+  doUserEditsPost,
+};

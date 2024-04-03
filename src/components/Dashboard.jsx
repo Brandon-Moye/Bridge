@@ -6,6 +6,7 @@ import { useAuth } from "../context/AuthContext";
 import { db } from "../../firebase";
 import { useState, useContext } from "react";
 import { async } from "@firebase/util";
+import { Link } from "react-router-dom";
 
 export default function Dashboard() {
   const { data, isLoadingData, justYourData, handleSubmitTrigger } =
@@ -66,6 +67,11 @@ export default function Dashboard() {
   return (
     <div>
       <p>welcome to the dashboard</p>
+      <div className="blogLinkWrapper">
+        <Link className="blogLink" to="/blog">
+          Check out the Blog
+        </Link>
+      </div>
       <p>{isLoadingData ? "loading..." : "loaded!"}</p>
       <p>{data ? "I got it!" : "I don't got it"}</p>
       {/* {data.map((data) => {

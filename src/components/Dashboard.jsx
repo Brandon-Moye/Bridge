@@ -56,6 +56,13 @@ export default function Dashboard() {
     }
   }
 
+  async function handleUserUpdatePost(event) {
+    event.preventDefault();
+
+    try {
+    } catch {}
+  }
+
   return (
     <div>
       <p>welcome to the dashboard</p>

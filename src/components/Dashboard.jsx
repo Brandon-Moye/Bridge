@@ -69,7 +69,11 @@ export default function Dashboard() {
         );
       })} */}
       {justYourData.map((justYourData) => {
-        return <p>{justYourData}</p>;
+        return (
+          <p key={justYourData._id}>
+            {justYourData.post}, Post id: {justYourData._id.toString()}
+          </p>
+        );
       })}
       <form onSubmit={handleSubmit} action="">
         <textarea

@@ -7,7 +7,7 @@ const BlogArray = [
     date: "April 2, 2024",
     postType: "Project Documenting",
     textBody:
-      "I have 3 working functions with MongDB and the CRU in my CRUD on the horizon! MongoDB is an amazing tool and if you're reading this, love to code, and don't know how to use it, GO LEARN IT! I am excited for the first revision of this application to be complete. That will incompass allowing users to log in and write gratitudes for the day, they can see old gratitudes, update old ones, or delete them if they feel inclined. I have learned so much and I am still in phase one. I am very excited to continue working on this project. PS - yes the pages are UGLY but styilng will be coming soon!",
+      "I have 3 working functions with MongDB and the CRU in my CRUD on the horizon! MongoDB is an amazing tool and if you're reading this, love to code, and don't know how to use it, GO LEARN IT! I am excited for the first revision of this application to be complete. That will incompass allowing users to log in and write gratitudes for the day, they can see old gratitudes, update old ones, or delete them if they feel inclined. I have learned so much and I am still in phase one. I am very excited to continue working on this project. PS - yes the pages are UGLY but styling will be coming soon!",
   },
   {
     postNum: 2,

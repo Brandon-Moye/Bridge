@@ -8,7 +8,6 @@ import Login from "./components/Login";
 import Signup from "./components/Signup";
 import ForgotPassword from "./components/ForgotPassword";
 import Dashboard from "./components/Dashboard";
-import Gratitudes from "./components/Gratitudes";
 import Blog from "./components/Blog";
 import BlogArray from "./components/BlogArray";
 import NavBar from "./components/NavBar";
@@ -31,7 +30,6 @@ function App() {
           element={
             <PrivateRoute>
               <Dashboard />
-              <Gratitudes />
             </PrivateRoute>
           }
         />

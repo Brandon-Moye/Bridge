@@ -1,5 +1,6 @@
 import { DataContext } from "../Helpers/DataProvider";
 import { doUploadPost, doUserEditsPost } from "../Helpers/Mongo";
+import Gratitudes from "./Gratitudes";
 import { useNavigate } from "react-router";
 import { doc, increment, serverTimestamp, setDoc } from "firebase/firestore";
 import { useAuth } from "../context/AuthContext";
@@ -64,6 +65,10 @@ export default function Dashboard() {
     } catch {}
   }
 
+  const gratitudesFeed = justYourData.map((item) => {
+    return <Gratitudes item={item} />;
+  });
+
   return (
     <div>
       <p>welcome to the dashboard</p>
@@ -81,13 +86,17 @@ export default function Dashboard() {
           </p>
         );
       })} */}
-      {justYourData.map((justYourData) => {
+
+      {/** this was the initial way of rendering conent on the page */}
+      {/* {justYourData.map((justYourData) => {
         return (
           <p key={justYourData._id}>
             {justYourData.post}, Post id: {justYourData._id.toString()}
           </p>
         );
-      })}
+      })} */}
+
+      {gratitudesFeed}
       <form onSubmit={handleSubmit} action="">
         <textarea
           value={postContent}

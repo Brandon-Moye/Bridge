@@ -1,6 +1,7 @@
 import { DataContext } from "../Helpers/DataProvider";
 import { doUploadPost, doUserEditsPost } from "../Helpers/Mongo";
 import Gratitudes from "./Gratitudes";
+import EditPost from "./EditPost";
 import { useNavigate } from "react-router";
 import { doc, increment, serverTimestamp, setDoc } from "firebase/firestore";
 import { useAuth } from "../context/AuthContext";

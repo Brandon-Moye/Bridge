@@ -1,15 +1,19 @@
 import React from "react";
 
-export default function Gratitudes({ item }) {
+export default function Gratitudes({ item, onEdit }) {
   if (!item || !item.post) {
     return null;
   }
+
+  const handleEditClick = () => {
+    onEdit(item._id);
+  };
   // console.log(props.item);
   return (
     <div className="gratitudesWrapper">
       <div>{item.post}</div>
       <div>{item.userId}</div>
-      <button>Edit</button>
+      <button onClick={handleEditClick}>Edit</button>
     </div>
   );
 }

@@ -15,6 +15,7 @@ export default function Dashboard() {
     useContext(DataContext);
   const [error, setError] = useState();
   const [postContent, setPostContent] = useState(""); //state to hold post
+  const [editPostContent, setEditPostContent] = useState(""); //state to hold edit text
   // const [currentUserWhoPosted, setCurrentUserWhoPosted] = useState("");
   const navigate = useNavigate();
 
@@ -59,15 +60,16 @@ export default function Dashboard() {
     }
   }
 
-  async function handleUserUpdatePost(event) {
-    event.preventDefault();
-
+  async function handleUserUpdatePost(userId) {
+    // event.preventDefault();
+    console.log(userId.toString());
     try {
+      await doUserEditsPost({});
     } catch {}
   }
 
   const gratitudesFeed = justYourData.map((item) => {
-    return <Gratitudes item={item} />;
+    return <Gratitudes key={item} item={item} onEdit={handleUserUpdatePost} />;
   });
 
   return (
@@ -108,6 +110,17 @@ export default function Dashboard() {
           rows="10"
         ></textarea>
         <button type="sumbit">Post</button>
+      </form>
+      <form onSubmit={handleUserUpdatePost} action="">
+        <textarea
+          value={editPostContent}
+          onChange={(e) => setEditPostContent(e.target.value)}
+          name=""
+          id=""
+          cols="30"
+          rows="10"
+        ></textarea>
+        <button type="sumbit">Edit</button>
       </form>
       <button onClick={handleIncrement}>Increment database</button>
       <button onClick={handleLogout} type="link">

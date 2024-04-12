@@ -60,16 +60,18 @@ export default function Dashboard() {
     }
   }
 
-  async function handleUserUpdatePost(userId) {
+  async function handleUserUpdatePost(postId) {
     // event.preventDefault();
-    console.log(userId.toString());
+    console.log(postId.toString());
     try {
-      await doUserEditsPost({});
+      await doUserEditsPost(postId);
     } catch {}
   }
 
   const gratitudesFeed = justYourData.map((item) => {
-    return <Gratitudes key={item} item={item} onEdit={handleUserUpdatePost} />;
+    return (
+      <Gratitudes key={item._id} item={item} onEdit={handleUserUpdatePost} />
+    );
   });
 
   return (

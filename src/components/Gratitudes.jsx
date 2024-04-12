@@ -6,7 +6,7 @@ export default function Gratitudes({ item, onEdit }) {
   }
 
   const handleEditClick = () => {
-    onEdit(item._id);
+    onEdit(item._id.toString());
   };
   // console.log(props.item);
   return (

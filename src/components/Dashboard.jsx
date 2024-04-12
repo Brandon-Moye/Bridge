@@ -68,9 +68,17 @@ export default function Dashboard() {
     } catch {}
   }
 
+  async function loadUsersPostToEditField(postId) {
+    console.log("in test");
+  }
+
   const gratitudesFeed = justYourData.map((item) => {
     return (
-      <Gratitudes key={item._id} item={item} onEdit={handleUserUpdatePost} />
+      <Gratitudes
+        key={item._id}
+        item={item}
+        onEdit={loadUsersPostToEditField}
+      />
     );
   });
 

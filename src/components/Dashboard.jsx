@@ -17,11 +17,9 @@ export default function Dashboard() {
   const [postContent, setPostContent] = useState(""); //state to hold post
   const [editPostContent, setEditPostContent] = useState(""); //state to hold edit text
   const [editPostText, setEditPostText] = useState("");
-  // const [currentUserWhoPosted, setCurrentUserWhoPosted] = useState("");
   const navigate = useNavigate();
 
   const { logout, currentUser } = useAuth();
-  // console.log(justYourData);
   async function handleIncrement() {
     const userRef = doc(db, "users", currentUser.uid);
     await setDoc(
@@ -30,7 +28,6 @@ export default function Dashboard() {
       { merge: true }
     );
   }
-  // console.log(currentUser.uid);
 
   async function handleLogout() {
     setError("");

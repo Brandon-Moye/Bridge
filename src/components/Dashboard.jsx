@@ -16,6 +16,7 @@ export default function Dashboard() {
   const [error, setError] = useState();
   const [postContent, setPostContent] = useState(""); //state to hold post
   const [editPostContent, setEditPostContent] = useState(""); //state to hold edit text
+  const [editPostText, setEditPostText] = useState("");
   // const [currentUserWhoPosted, setCurrentUserWhoPosted] = useState("");
   const navigate = useNavigate();
 
@@ -60,17 +61,38 @@ export default function Dashboard() {
     }
   }
 
-  async function handleUserUpdatePost(postId) {
-    // event.preventDefault();
-    console.log(postId.toString());
+  async function handleUserUpdatePost(event) {
+    event.preventDefault();
+    const updatersId = editPostContent._id.toString();
     try {
-      await doUserEditsPost(postId);
-    } catch {}
+      await doUserEditsPost({
+        postId: updatersId,
+        newPostContent: editPostText,
+        // postId: "66098663fc970e2a672a55d0",
+      });
+      setEditPostText("");
+      handleSubmitTrigger(); // trigger useEffect in DataProvider
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  async function loadUsersPostToEditField(postId) {
+    // console.log(postId);
+    const findPostToEdit = justYourData.find(
+      (item) => item._id.toString() === postId
+    );
+    setEditPostContent(findPostToEdit);
+    setEditPostText(findPostToEdit.post);
   }
 
   const gratitudesFeed = justYourData.map((item) => {
     return (
-      <Gratitudes key={item._id} item={item} onEdit={handleUserUpdatePost} />
+      <Gratitudes
+        key={item._id}
+        item={item}
+        onEdit={loadUsersPostToEditField}
+      />
     );
   });
 
@@ -115,14 +137,14 @@ export default function Dashboard() {
       </form>
       <form onSubmit={handleUserUpdatePost} action="">
         <textarea
-          value={editPostContent}
-          onChange={(e) => setEditPostContent(e.target.value)}
+          value={editPostText}
+          onChange={(e) => setEditPostText(e.target.value)}
           name=""
           id=""
           cols="30"
           rows="10"
         ></textarea>
-        <button type="sumbit">Edit</button>
+        <button type="sumbit">Update</button>
       </form>
       <button onClick={handleIncrement}>Increment database</button>
       <button onClick={handleLogout} type="link">

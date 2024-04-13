@@ -29,8 +29,11 @@ async function doUploadPost(postData, userWhoPostedData) {
   );
 }
 
-async function doUserEditsPost(postId) {
-  return await realm.currentUser.functions.userEditsPost(postId);
+async function doUserEditsPost(postIdData, EditedPostContentData) {
+  return await realm.currentUser.functions.userEditsPost(
+    postIdData,
+    EditedPostContentData
+  );
 }
 
 export {

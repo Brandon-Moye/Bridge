@@ -1,5 +1,9 @@
 import { DataContext } from "../Helpers/DataProvider";
-import { doUploadPost, doUserEditsPost } from "../Helpers/Mongo";
+import {
+  doUploadPost,
+  doUserDeletesPost,
+  doUserEditsPost,
+} from "../Helpers/Mongo";
 import Gratitudes from "./Gratitudes";
 import EditPost from "./EditPost";
 import { useNavigate } from "react-router";
@@ -83,12 +87,22 @@ export default function Dashboard() {
     setEditPostText(findPostToEdit.post);
   }
 
+  async function deleteUsersPost(postId) {
+    try {
+      await doUserDeletesPost(postId);
+      handleSubmitTrigger(); // trigger useEffect in DataProvider
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
   const gratitudesFeed = justYourData.map((item) => {
     return (
       <Gratitudes
         key={item._id}
         item={item}
         onEdit={loadUsersPostToEditField}
+        onDelete={deleteUsersPost}
       />
     );
   });
@@ -101,26 +115,7 @@ export default function Dashboard() {
           Check out the Blog
         </Link>
       </div>
-      <p>{isLoadingData ? "loading..." : "loaded!"}</p>
-      <p>{data ? "I got it!" : "I don't got it"}</p>
-      {/* {data.map((data) => {
-        return (
-          <p key={data._id}>
-            {data.post} by: {data.userId}
-          </p>
-        );
-      })} */}
 
-      {/** this was the initial way of rendering conent on the page */}
-      {/* {justYourData.map((justYourData) => {
-        return (
-          <p key={justYourData._id}>
-            {justYourData.post}, Post id: {justYourData._id.toString()}
-          </p>
-        );
-      })} */}
-
-      {gratitudesFeed}
       <form onSubmit={handleSubmit} action="">
         <textarea
           value={postContent}
@@ -147,6 +142,26 @@ export default function Dashboard() {
       <button onClick={handleLogout} type="link">
         Logout
       </button>
+      <p>{isLoadingData ? "loading..." : "loaded!"}</p>
+      <p>{data ? "I got it!" : "I don't got it"}</p>
+      {/* {data.map((data) => {
+        return (
+          <p key={data._id}>
+            {data.post} by: {data.userId}
+          </p>
+        );
+      })} */}
+
+      {/** this was the initial way of rendering conent on the page */}
+      {/* {justYourData.map((justYourData) => {
+        return (
+          <p key={justYourData._id}>
+            {justYourData.post}, Post id: {justYourData._id.toString()}
+          </p>
+        );
+      })} */}
+
+      {gratitudesFeed}
     </div>
   );
 }

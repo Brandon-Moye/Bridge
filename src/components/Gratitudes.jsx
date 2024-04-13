@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function Gratitudes({ item, onEdit }) {
+export default function Gratitudes({ item, onEdit, onDelete }) {
   if (!item || !item.post) {
     return null;
   }
@@ -8,13 +8,17 @@ export default function Gratitudes({ item, onEdit }) {
   const handleEditClick = () => {
     onEdit(item._id.toString());
   };
+
+  const handleDeleteClick = () => {
+    onDelete(item._id.toString());
+  };
   // console.log(props.item);
   return (
     <div className="gratitudesWrapper">
       <div>{item.post}</div>
       <div>{item.userId}</div>
       <button onClick={handleEditClick}>Edit</button>
-      <button>Delete</button>
+      <button onClick={handleDeleteClick}>Delete</button>
     </div>
   );
 }

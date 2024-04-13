@@ -36,6 +36,10 @@ async function doUserEditsPost(postIdData, EditedPostContentData) {
   );
 }
 
+async function doUserDeletesPost(postIdData) {
+  return await realm.currentUser.functions.userDeletesPost(postIdData);
+}
+
 export {
   realm,
   doLoginRealm,
@@ -43,4 +47,5 @@ export {
   doUploadPost,
   doGetYourPostsOnly,
   doUserEditsPost,
+  doUserDeletesPost,
 };

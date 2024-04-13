@@ -63,13 +63,15 @@ export default function Dashboard() {
   async function handleUserUpdatePost(event) {
     event.preventDefault();
     const updatersId = editPostContent._id.toString();
+    const updatersOldContent = editPostContent.post;
     try {
       await doUserEditsPost({
         postId: updatersId,
-        newPostContent: editPostContent.post,
+        newPostContent: updatersOldContent,
         // postId: "66098663fc970e2a672a55d0",
       });
-      // handleSubmitTrigger(); // trigger useEffect in DataProvider
+      setEditPostContent("");
+      handleSubmitTrigger(); // trigger useEffect in DataProvider
     } catch (error) {
       console.log(error);
     }

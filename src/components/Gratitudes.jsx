@@ -14,6 +14,7 @@ export default function Gratitudes({ item, onEdit }) {
       <div>{item.post}</div>
       <div>{item.userId}</div>
       <button onClick={handleEditClick}>Edit</button>
+      <button>Delete</button>
     </div>
   );
 }

@@ -16,6 +16,7 @@ export default function Dashboard() {
   const [error, setError] = useState();
   const [postContent, setPostContent] = useState(""); //state to hold post
   const [editPostContent, setEditPostContent] = useState(""); //state to hold edit text
+  const [editPostText, setEditPostText] = useState("");
   // const [currentUserWhoPosted, setCurrentUserWhoPosted] = useState("");
   const navigate = useNavigate();
 
@@ -63,14 +64,13 @@ export default function Dashboard() {
   async function handleUserUpdatePost(event) {
     event.preventDefault();
     const updatersId = editPostContent._id.toString();
-    const updatersOldContent = editPostContent.post;
     try {
       await doUserEditsPost({
         postId: updatersId,
-        newPostContent: updatersOldContent,
+        newPostContent: editPostText,
         // postId: "66098663fc970e2a672a55d0",
       });
-      setEditPostContent("");
+      setEditPostText("");
       handleSubmitTrigger(); // trigger useEffect in DataProvider
     } catch (error) {
       console.log(error);
@@ -78,12 +78,12 @@ export default function Dashboard() {
   }
 
   async function loadUsersPostToEditField(postId) {
-    console.log(postId);
-    // console.log(justYourData[0]._id.toString());
+    // console.log(postId);
     const findPostToEdit = justYourData.find(
       (item) => item._id.toString() === postId
     );
     setEditPostContent(findPostToEdit);
+    setEditPostText(findPostToEdit.post);
   }
 
   const gratitudesFeed = justYourData.map((item) => {
@@ -137,10 +137,8 @@ export default function Dashboard() {
       </form>
       <form onSubmit={handleUserUpdatePost} action="">
         <textarea
-          value={editPostContent.post}
-          onChange={(e) =>
-            setEditPostContent({ ...editPostContent, post: e.target.value })
-          }
+          value={editPostText}
+          onChange={(e) => setEditPostText(e.target.value)}
           name=""
           id=""
           cols="30"

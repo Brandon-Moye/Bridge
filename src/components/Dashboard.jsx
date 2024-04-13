@@ -62,10 +62,11 @@ export default function Dashboard() {
 
   async function handleUserUpdatePost(event) {
     event.preventDefault();
-    console.log(editPostContent._id.toString());
+    const updatersId = editPostContent._id.toString();
     try {
       await doUserEditsPost({
-        postId: editPostContent._id.toString(),
+        postId: updatersId,
+        newPostContent: editPostContent.post,
         // postId: "66098663fc970e2a672a55d0",
       });
       // handleSubmitTrigger(); // trigger useEffect in DataProvider
@@ -135,7 +136,9 @@ export default function Dashboard() {
       <form onSubmit={handleUserUpdatePost} action="">
         <textarea
           value={editPostContent.post}
-          onChange={(e) => setEditPostContent(e.target.value)}
+          onChange={(e) =>
+            setEditPostContent({ ...editPostContent, post: e.target.value })
+          }
           name=""
           id=""
           cols="30"

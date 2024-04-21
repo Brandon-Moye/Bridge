@@ -1,4 +1,7 @@
-.blogPostWrapper
+.blogPostWrapper {
+    display: grid;
+    grid-template-columns: 2fr;
+}
 
 .blogPostTitle
 

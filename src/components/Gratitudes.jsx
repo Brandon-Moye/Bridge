@@ -15,7 +15,7 @@ export default function Gratitudes({ item, onEdit, onDelete }) {
   // console.log(props.item);
   return (
     <div className="gratitudesWrapper">
-      <div>{item.post}</div>
+      <div className="postTextContent">{item.post}</div>
       <div>{item.userId}</div>
       <button onClick={handleEditClick}>Edit</button>
       <button onClick={handleDeleteClick}>Delete</button>

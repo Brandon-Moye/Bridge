@@ -4,3 +4,7 @@
 .signupForm {
     display: grid;
 }
+
+.welcomeTitle {
+    font-weight: 600;
+}

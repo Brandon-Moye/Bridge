@@ -4,3 +4,7 @@
 .blogLink{    
     color: aquamarine;
 }
+
+.postForm {
+    display: grid;
+}

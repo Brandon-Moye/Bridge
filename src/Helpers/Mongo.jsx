@@ -13,6 +13,10 @@ async function doLoginRealm() {
   return await realm.logIn(creds);
 }
 
+async function doStoreUserProfileData() {
+  return await realm.currentUser.functions.storeUserProfileData();
+}
+
 async function doGetData() {
   // TODO: define a function in realm called getData
   return await realm.currentUser.functions.getAllPostsTest();

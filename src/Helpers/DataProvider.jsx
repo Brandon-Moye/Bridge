@@ -29,7 +29,7 @@ const DataProvider = ({ children }) => {
     loadData();
   }, [submitTrigger]);
 
-  // Function to trigger useEffect on post submit
+  // Function to trigger useEffect on post submit/edit
   const handleSubmitTrigger = () => {
     setSubmitTrigger((prevState) => !prevState);
   };

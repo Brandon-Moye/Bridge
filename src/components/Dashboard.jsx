@@ -5,7 +5,6 @@ import {
   doUserEditsPost,
 } from "../Helpers/Mongo";
 import Gratitudes from "./Gratitudes";
-import EditPost from "./EditPost";
 import { useNavigate } from "react-router";
 import { doc, increment, serverTimestamp, setDoc } from "firebase/firestore";
 import { useAuth } from "../context/AuthContext";
@@ -57,7 +56,7 @@ export default function Dashboard() {
       handleSubmitTrigger(); // trigger useEffect in DataProvider
       console.log(currentUser.uid);
     } catch (error) {
-      console.error("Error uploading post:", error);
+      console.error("Error uploading post to site:", error);
       setError(error.message);
     }
   }

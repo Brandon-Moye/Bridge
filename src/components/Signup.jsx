@@ -1,11 +1,13 @@
 import React, { useRef, useState } from "react";
 import { useAuth } from "../context/AuthContext";
 import { Link, useNavigate } from "react-router-dom";
+import { doLoginRealm, doStoreUserProfileData } from "../Helpers/Mongo";
 
 export default function Signup() {
   const emailRef = useRef();
   const passwordRef = useRef();
   const passwordConfirmRef = useRef();
+  const { currentUser } = useAuth(); /*from Firebase variables */
   const { signup } = useAuth(); /*from Firebase functions */
   const navigate = useNavigate(); /*react-router-dom function */
 
@@ -22,9 +24,22 @@ export default function Signup() {
     try {
       setError("");
       setLoading(true);
-      await signup(emailRef.current.value, passwordRef.current.value);
+      const userCredentials = await signup(
+        emailRef.current.value,
+        passwordRef.current.value
+      );
+      /**
+       Start code for signup store after the firebase function
+       */
+
+      await doLoginRealm();
+
+      await doStoreUserProfileData({
+        userWhoSignedUp: userCredentials.user.uid,
+        email: emailRef.current.value,
+      });
       navigate("/");
-    } catch {
+    } catch (error) {
       setError("Failed to create an account, veryify passwords match");
     }
     setLoading(false);

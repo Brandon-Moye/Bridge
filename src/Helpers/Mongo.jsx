@@ -13,6 +13,13 @@ async function doLoginRealm() {
   return await realm.logIn(creds);
 }
 
+async function doStoreUserProfileData(UserWhoSignedUpData, emailData) {
+  return await realm.currentUser.functions.storeUserProfileData(
+    UserWhoSignedUpData,
+    emailData
+  );
+}
+
 async function doGetData() {
   // TODO: define a function in realm called getData
   return await realm.currentUser.functions.getAllPostsTest();
@@ -43,6 +50,7 @@ async function doUserDeletesPost(postIdData) {
 export {
   realm,
   doLoginRealm,
+  doStoreUserProfileData,
   doGetData,
   doUploadPost,
   doGetYourPostsOnly,

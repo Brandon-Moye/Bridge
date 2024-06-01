@@ -24,7 +24,10 @@ export default function Signup() {
     try {
       setError("");
       setLoading(true);
-      await signup(emailRef.current.value, passwordRef.current.value);
+      const userCredentials = await signup(
+        emailRef.current.value,
+        passwordRef.current.value
+      );
       /**
        Start code for signup store after the firebase function
        */
@@ -32,7 +35,7 @@ export default function Signup() {
       await doLoginRealm();
 
       await doStoreUserProfileData({
-        // userWhoSignedUp: currentUser.uid,
+        userWhoSignedUp: userCredentials.user.uid,
         email: emailRef.current.value,
       });
       navigate("/");

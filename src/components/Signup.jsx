@@ -3,6 +3,8 @@ import { useAuth } from "../context/AuthContext";
 import { Link, useNavigate } from "react-router-dom";
 import { doLoginRealm, doStoreUserProfileData } from "../Helpers/Mongo";
 
+import TextField from "@mui/material/TextField";
+
 export default function Signup() {
   const emailRef = useRef();
   const passwordRef = useRef();
@@ -46,6 +48,7 @@ export default function Signup() {
   }
   return (
     <div className="loginPageWrapper">
+      <TextField id="outlined-basic" label="email" variant="outlined" />
       <form onSubmit={handleSubmit} className="signupForm">
         <h3 className="welcomeTitle">Welcome!</h3>
         <label className="emailLabel" htmlFor="">

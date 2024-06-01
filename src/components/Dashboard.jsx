@@ -56,7 +56,7 @@ export default function Dashboard() {
       handleSubmitTrigger(); // trigger useEffect in DataProvider
       console.log(currentUser.uid);
     } catch (error) {
-      console.error("Error uploading post:", error);
+      console.error("Error uploading post to site:", error);
       setError(error.message);
     }
   }

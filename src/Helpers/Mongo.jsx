@@ -13,11 +13,8 @@ async function doLoginRealm() {
   return await realm.logIn(creds);
 }
 
-async function doStoreUserProfileData(userWhoSignedUpData, emailData) {
-  return await realm.currentUser.functions.storeUserProfileData(
-    userWhoSignedUpData,
-    emailData
-  );
+async function doStoreUserProfileData(emailData) {
+  return await realm.currentUser.functions.storeUserProfileData(emailData);
 }
 
 async function doGetData() {

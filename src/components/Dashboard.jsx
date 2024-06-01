@@ -3,9 +3,9 @@ import {
   doUploadPost,
   doUserDeletesPost,
   doUserEditsPost,
+  doStoreUserProfileData,
 } from "../Helpers/Mongo";
 import Gratitudes from "./Gratitudes";
-import EditPost from "./EditPost";
 import { useNavigate } from "react-router";
 import { doc, increment, serverTimestamp, setDoc } from "firebase/firestore";
 import { useAuth } from "../context/AuthContext";
@@ -31,6 +31,10 @@ export default function Dashboard() {
       { counter: increment(1), timestamp: serverTimestamp() },
       { merge: true }
     );
+  }
+
+  async function handleSignup() {
+    await doStoreUserProfileData({ email: "testEmail" });
   }
 
   async function handleLogout() {
@@ -110,6 +114,7 @@ export default function Dashboard() {
   return (
     <div>
       <p>welcome to the dashboard</p>
+      <button onClick={handleSignup}>Signup</button>
       <div className="blogLinkWrapper">
         <Link className="blogLink" to="/blog">
           Check out the Blog

@@ -30,11 +30,8 @@ export default function Signup() {
         emailRef.current.value,
         passwordRef.current.value
       );
-      /**
-       Start code for signup store after the firebase function
-       */
 
-      await doLoginRealm();
+      await doLoginRealm(); /*get access to realm data needed to run doStoreUserProfileData */
 
       await doStoreUserProfileData({
         userWhoSignedUp: userCredentials.user.uid,
@@ -50,8 +47,9 @@ export default function Signup() {
       }
       setOpenSnackbar(true);
       // setError("Failed to create an account, veryify passwords match");
+    } finally {
+      setLoading(false);
     }
-    setLoading(false);
   }
 
   const handleCloseSnackbar = (reason) => {
@@ -62,7 +60,6 @@ export default function Signup() {
   };
   return (
     <div className="loginPageWrapper">
-      {/* {error && ( */}
       <Snackbar
         anchorOrigin={{ vertical: "top", horizontal: "center" }}
         open={openSnackbar}

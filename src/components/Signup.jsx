@@ -16,8 +16,6 @@ export default function Signup() {
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   const [openSnackbar, setOpenSnackbar] = useState(false);
-  const [passwordPassesComplexityCheck, setPasswordChecksComplexityCheck] =
-    useState(false);
 
   async function handleSubmit(e) {
     e.preventDefault(); /*preventing from refreshing */
@@ -26,26 +24,18 @@ export default function Signup() {
       return setError("Passwords do not match");
     }
 
-    // validatePasswordRequirements(passwordRef.current.value);
-
     const notComplexEnoughPasswordError = validatePasswordRequirements(
       passwordRef.current.value
     );
     if (notComplexEnoughPasswordError) {
       console.log(
-        "passwords do not meet standards2",
+        "passwords do not meet standards2 ",
         notComplexEnoughPasswordError
       );
       setError(notComplexEnoughPasswordError);
       setOpenSnackbar(true);
       return;
     }
-
-    // if (!passwordPassesComplexityCheck) {
-    //   console.log("passwords do not meet standards");
-    //   setOpenSnackbar(true);
-    //   return setError("not complex enough");
-    // }
 
     try {
       // setError("");
@@ -112,6 +102,7 @@ export default function Signup() {
           email
         </label>
         <input
+          type="email"
           className="emailInput"
           placeholder="Email"
           ref={emailRef}

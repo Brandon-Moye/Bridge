@@ -4,6 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { doLoginRealm, doStoreUserProfileData } from "../Helpers/Mongo";
 
 import { Alert, AlertTitle, Snackbar } from "@mui/material";
+import { async } from "@firebase/util";
 
 export default function Signup() {
   const emailRef = useRef();
@@ -15,6 +16,8 @@ export default function Signup() {
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   const [openSnackbar, setOpenSnackbar] = useState(false);
+  const [passwordPassesComplexityCheck, setPasswordChecksComplexityCheck] =
+    useState(false);
 
   async function handleSubmit(e) {
     e.preventDefault(); /*preventing from refreshing */
@@ -23,8 +26,29 @@ export default function Signup() {
       return setError("Passwords do not match");
     }
 
+    // validatePasswordRequirements(passwordRef.current.value);
+
+    const notComplexEnoughPasswordError = validatePasswordRequirements(
+      passwordRef.current.value
+    );
+    if (notComplexEnoughPasswordError) {
+      console.log(
+        "passwords do not meet standards2",
+        notComplexEnoughPasswordError
+      );
+      setError(notComplexEnoughPasswordError);
+      setOpenSnackbar(true);
+      return;
+    }
+
+    // if (!passwordPassesComplexityCheck) {
+    //   console.log("passwords do not meet standards");
+    //   setOpenSnackbar(true);
+    //   return setError("not complex enough");
+    // }
+
     try {
-      setError("");
+      // setError("");
       setLoading(true);
       const userCredentials = await signup(
         emailRef.current.value,
@@ -49,6 +73,17 @@ export default function Signup() {
       // setError("Failed to create an account, veryify passwords match");
     } finally {
       setLoading(false);
+    }
+  }
+
+  // 06/05/24 - this works for some reason and not the direct reference to the function, need to investigate
+  function validatePasswordRequirements(password) {
+    // const passwordLength = password.length >= 12;
+    const containsUpperCaseLetter = /[A-Z]/.test(password);
+    console.log(containsUpperCaseLetter);
+
+    if (!containsUpperCaseLetter) {
+      return "no uppercase letter";
     }
   }
 

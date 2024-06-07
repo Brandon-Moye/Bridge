@@ -70,6 +70,7 @@ export default function Signup() {
       setLoading(false);
     }
   }
+  /*checks if the email field is blank, if there are characters it makes sure it matches convential email syntax */
   function validateEmailIsAnEmail(email) {
     const regex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
     const isItAnEmail = regex.test(String(email).toLowerCase());
@@ -87,6 +88,7 @@ export default function Signup() {
     }
   }
 
+  /*make sure the password is to my liking */
   function validatePasswordRequirements(password, setError, setLoading) {
     const containsUpperCaseLetter = /[A-Z]/.test(password);
     console.log(containsUpperCaseLetter);

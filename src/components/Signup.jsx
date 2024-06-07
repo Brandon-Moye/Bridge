@@ -43,7 +43,6 @@ export default function Signup() {
     }
 
     try {
-      // setError("");
       setLoading(true);
       const userCredentials = await signup(
         emailRef.current.value,
@@ -58,7 +57,6 @@ export default function Signup() {
       });
       navigate("/");
     } catch (error) {
-      console.log(error);
       if (error.code === "auth/email-already-in-use") {
         setError("Sorry, this email is already used");
       } else {
@@ -87,7 +85,6 @@ export default function Signup() {
   /*make sure the password is to my liking, need to add more rules */
   function validatePasswordRequirements(password, setError, setLoading) {
     const containsUpperCaseLetter = /[A-Z]/.test(password);
-    console.log(containsUpperCaseLetter);
 
     if (!containsUpperCaseLetter) {
       setError("Password must contain at least one uppercase letter");

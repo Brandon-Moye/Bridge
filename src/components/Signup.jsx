@@ -20,20 +20,25 @@ export default function Signup() {
   async function handleSubmit(e) {
     e.preventDefault(); /*preventing from refreshing */
     setOpenSnackbar(false); /*reset the snackbar if resubmitting */
-    if (passwordRef.current.value !== passwordConfirmRef.current.value) {
-      return setError("Passwords do not match");
+    setError("");
+
+    if (!validateEmailIsAnEmail(emailRef.current.valu)) {
+      return;
     }
 
-    const notComplexEnoughPasswordError = validatePasswordRequirements(
-      passwordRef.current.value
-    );
-    if (notComplexEnoughPasswordError) {
-      console.log(
-        "passwords do not meet standards2 ",
-        notComplexEnoughPasswordError
-      );
-      setError(notComplexEnoughPasswordError);
+    if (passwordRef.current.value !== passwordConfirmRef.current.value) {
       setOpenSnackbar(true);
+      setError("Passwords do not match");
+      return;
+    }
+
+    if (
+      !validatePasswordRequirements(
+        passwordRef.current.value,
+        setError,
+        setOpenSnackbar
+      )
+    ) {
       return;
     }
 
@@ -65,16 +70,33 @@ export default function Signup() {
       setLoading(false);
     }
   }
+  function validateEmailIsAnEmail(email) {
+    const regex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    const isItAnEmail = regex.test(String(email).toLowerCase());
+    if (email === "") {
+      setOpenSnackbar(true);
+      setError("Please enter an email");
+      return false;
+    } else if (!isItAnEmail) {
+      setOpenSnackbar(true);
+      setError("Please enter a valid email");
+      return false;
+    } else {
+      setError("");
+      return true;
+    }
+  }
 
-  // 06/05/24 - this works for some reason and not the direct reference to the function, need to investigate
-  function validatePasswordRequirements(password) {
-    // const passwordLength = password.length >= 12;
+  function validatePasswordRequirements(password, setError, setLoading) {
     const containsUpperCaseLetter = /[A-Z]/.test(password);
     console.log(containsUpperCaseLetter);
 
     if (!containsUpperCaseLetter) {
-      return "no uppercase letter";
+      setError("Password must contain at least one uppercase letter");
+      setLoading(true);
+      return false;
     }
+    return true;
   }
 
   const handleCloseSnackbar = (reason) => {
@@ -92,7 +114,7 @@ export default function Signup() {
         onClose={handleCloseSnackbar}
       >
         <Alert severity="warning">
-          <AlertTitle>Email Exists</AlertTitle>
+          <AlertTitle>Signup Error</AlertTitle>
           {error}
         </Alert>
       </Snackbar>
@@ -102,7 +124,6 @@ export default function Signup() {
           email
         </label>
         <input
-          type="email"
           className="emailInput"
           placeholder="Email"
           ref={emailRef}

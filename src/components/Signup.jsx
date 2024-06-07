@@ -22,7 +22,7 @@ export default function Signup() {
     setOpenSnackbar(false); /*reset the snackbar if resubmitting */
     setError("");
 
-    if (!validateEmailIsAnEmail(emailRef.current.valu)) {
+    if (!validateEmailIsAnEmail(emailRef.current.value)) {
       return;
     }
 

@@ -22,7 +22,7 @@ export default function Signup() {
     setOpenSnackbar(false); /*reset the snackbar if resubmitting */
     setError("");
 
-    if (!validateEmailIsAnEmail(emailRef.current.valu)) {
+    if (!validateEmailIsAnEmail(emailRef.current.value)) {
       return;
     }
 
@@ -74,11 +74,7 @@ export default function Signup() {
   function validateEmailIsAnEmail(email) {
     const regex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
     const isItAnEmail = regex.test(String(email).toLowerCase());
-    if (email === "") {
-      setOpenSnackbar(true);
-      setError("Please enter an email");
-      return false;
-    } else if (!isItAnEmail) {
+    if (!isItAnEmail) {
       setOpenSnackbar(true);
       setError("Please enter a valid email");
       return false;

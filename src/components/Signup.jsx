@@ -88,7 +88,7 @@ export default function Signup() {
     }
   }
 
-  /*make sure the password is to my liking */
+  /*make sure the password is to my liking, need to add more rules */
   function validatePasswordRequirements(password, setError, setLoading) {
     const containsUpperCaseLetter = /[A-Z]/.test(password);
     console.log(containsUpperCaseLetter);

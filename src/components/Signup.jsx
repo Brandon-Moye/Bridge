@@ -29,7 +29,12 @@ export default function Signup() {
         throw new Error("invalid-email-format");
       }
 
-      if (!validatePasswordsMatch(passwordRef.current.value)) {
+      if (
+        !validatePasswordsMatch(
+          passwordRef.current.value,
+          passwordConfirmRef.current.value
+        )
+      ) {
         throw new Error("passwords-do-not-match");
       }
 
@@ -58,52 +63,36 @@ export default function Signup() {
       });
       navigate("/");
     } catch (error) {
-      if (error.code === "auth/email-already-in-use") {
-        setError("Sorry, this email is already used");
-      } else {
-        setError("hmmm, something else went wrong, try again");
+      switch (error.message) {
+        case "invalid-email-format":
+          setError("Please enter a valid email address");
+          break;
+        case "passwords-do-not-match":
+          setError("Passwords do not match");
+          break;
+        case "password-requirements-not-met":
+          setError("Password not complex enough");
+          break;
       }
       setOpenSnackbar(true);
-      // setError("Failed to create an account, veryify passwords match");
     } finally {
       setLoading(false);
     }
   }
-  /*checks if the email field is blank, if there are characters it makes sure it matches convential email syntax */
+
   function validateEmailIsAnEmail(email) {
     const regex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-    const isItAnEmail = regex.test(String(email).toLowerCase());
-    if (!isItAnEmail) {
-      setOpenSnackbar(true);
-      setError("Please enter a valid email");
-      return false;
-    } else {
-      setError("");
-      return true;
-    }
+    return regex.test(email.toLowerCase());
   }
 
-  function validatePasswordsMatch(password) {
-    if (passwordRef.current.value !== passwordConfirmRef.current.value) {
-      setOpenSnackbar(true);
-      setError("Passwords do not match");
-      return false;
-    } else {
-      setError("");
-      return true;
-    }
+  /*write function is password fields are blank */
+  function validatePasswordsMatch(password, confirmPassword) {
+    return password === confirmPassword;
   }
 
   /*make sure the password is to my liking, need to add more rules */
-  function validatePasswordRequirements(password, setError, setLoading) {
-    const containsUpperCaseLetter = /[A-Z]/.test(password);
-
-    if (!containsUpperCaseLetter) {
-      setError("Password must contain at least one uppercase letter");
-      setLoading(true);
-      return false;
-    }
-    return true;
+  function validatePasswordRequirements(password) {
+    return /[A-Z]/.test(password);
   }
 
   const handleCloseSnackbar = (reason) => {

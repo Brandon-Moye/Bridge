@@ -22,29 +22,29 @@ export default function Signup() {
     setOpenSnackbar(false); /*reset the snackbar if resubmitting */
     setError("");
 
-    if (!validateEmailIsAnEmail(emailRef.current.value)) {
-      return;
-    }
-
-    if (passwordRef.current.value !== passwordConfirmRef.current.value) {
-      setOpenSnackbar(true);
-      setError("Passwords do not match");
-      return;
-    }
-
-    if (
-      !validatePasswordRequirements(
-        passwordRef.current.value,
-        setError,
-        setOpenSnackbar
-      )
-    ) {
-      return;
-    }
-
     try {
-      // setError("");
       setLoading(true);
+
+      if (!validateEmailIsAnEmail(emailRef.current.value)) {
+        throw new Error("invalid-email-format");
+      }
+
+      if (!validatePasswordsMatch(passwordRef.current.value)) {
+        throw new Error("passwords-do-not-match");
+      }
+
+      if (
+        !validatePasswordRequirements(
+          passwordRef.current.value,
+          setError,
+          setOpenSnackbar
+        )
+      ) {
+        throw new Error("password-requirements-not-met");
+      }
+
+      /*need to add code to check MDB for an account, don't like the idea of creating a temp account in Firebase*/
+
       const userCredentials = await signup(
         emailRef.current.value,
         passwordRef.current.value
@@ -58,7 +58,6 @@ export default function Signup() {
       });
       navigate("/");
     } catch (error) {
-      console.log(error);
       if (error.code === "auth/email-already-in-use") {
         setError("Sorry, this email is already used");
       } else {
@@ -84,10 +83,20 @@ export default function Signup() {
     }
   }
 
+  function validatePasswordsMatch(password) {
+    if (passwordRef.current.value !== passwordConfirmRef.current.value) {
+      setOpenSnackbar(true);
+      setError("Passwords do not match");
+      return false;
+    } else {
+      setError("");
+      return true;
+    }
+  }
+
   /*make sure the password is to my liking, need to add more rules */
   function validatePasswordRequirements(password, setError, setLoading) {
     const containsUpperCaseLetter = /[A-Z]/.test(password);
-    console.log(containsUpperCaseLetter);
 
     if (!containsUpperCaseLetter) {
       setError("Password must contain at least one uppercase letter");

@@ -22,15 +22,9 @@ export default function Signup() {
     setOpenSnackbar(false); /*reset the snackbar if resubmitting */
     setError("");
 
-    if (!validateEmailIsAnEmail(emailRef.current.value)) {
-      return;
-    }
+    if (!validateEmailIsAnEmail(emailRef.current.value)) return;
 
-    if (passwordRef.current.value !== passwordConfirmRef.current.value) {
-      setOpenSnackbar(true);
-      setError("Passwords do not match");
-      return;
-    }
+    if (!validatePasswordsMatch(passwordRef.current.value)) return;
 
     if (
       !validatePasswordRequirements(
@@ -75,6 +69,17 @@ export default function Signup() {
     if (!isItAnEmail) {
       setOpenSnackbar(true);
       setError("Please enter a valid email");
+      return false;
+    } else {
+      setError("");
+      return true;
+    }
+  }
+
+  function validatePasswordsMatch(password) {
+    if (passwordRef.current.value !== passwordConfirmRef.current.value) {
+      setOpenSnackbar(true);
+      setError("Passwords do not match");
       return false;
     } else {
       setError("");

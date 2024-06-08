@@ -22,22 +22,29 @@ export default function Signup() {
     setOpenSnackbar(false); /*reset the snackbar if resubmitting */
     setError("");
 
-    if (!validateEmailIsAnEmail(emailRef.current.value)) return;
-
-    if (!validatePasswordsMatch(passwordRef.current.value)) return;
-
-    if (
-      !validatePasswordRequirements(
-        passwordRef.current.value,
-        setError,
-        setOpenSnackbar
-      )
-    ) {
-      return;
-    }
-
     try {
       setLoading(true);
+
+      if (!validateEmailIsAnEmail(emailRef.current.value)) {
+        throw new Error("invalid-email-format");
+      }
+
+      if (!validatePasswordsMatch(passwordRef.current.value)) {
+        throw new Error("passwords-do-not-match");
+      }
+
+      if (
+        !validatePasswordRequirements(
+          passwordRef.current.value,
+          setError,
+          setOpenSnackbar
+        )
+      ) {
+        throw new Error("password-requirements-not-met");
+      }
+
+      /*need to add code to check MDB for an account, don't like the idea of creating a temp account in Firebase*/
+
       const userCredentials = await signup(
         emailRef.current.value,
         passwordRef.current.value

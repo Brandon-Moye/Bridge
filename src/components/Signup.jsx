@@ -72,6 +72,7 @@ export default function Signup() {
           break;
         case "password-requirements-not-met":
           setError("Password not complex enough");
+          break;
       }
       setOpenSnackbar(true);
     } finally {
@@ -81,26 +82,17 @@ export default function Signup() {
 
   function validateEmailIsAnEmail(email) {
     const regex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-    return regex.test(String(email).toLowerCase());
+    return regex.test(email.toLowerCase());
   }
 
+  /*write function is password fields are blank */
   function validatePasswordsMatch(password, confirmPassword) {
-    if (password !== confirmPassword) {
-      return false;
-    } else {
-      return true;
-    }
+    return password === confirmPassword;
   }
 
   /*make sure the password is to my liking, need to add more rules */
   function validatePasswordRequirements(password) {
-    const containsUpperCaseLetter = /[A-Z]/.test(password);
-
-    if (!containsUpperCaseLetter) {
-      return false;
-    } else {
-      return true;
-    }
+    return /[A-Z]/.test(password);
   }
 
   const handleCloseSnackbar = (reason) => {

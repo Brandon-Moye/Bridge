@@ -2,6 +2,14 @@ import React from "react";
 
 const BlogArray = [
   {
+    postNum: 4,
+    title: "Post #4 Leveling Up Signup",
+    date: "June 9, 2024",
+    postType: "Personal & Project Documenting",
+    textBody:
+      "A lot has happened since  the last post, CRUD is done, I worked an annual shut down at work for 2.5 weeks straight, and I moved my fiance from NYC back to Alabama. I made some great progress over the week. I am able to work with MUI components which look so sleek and really take popups to the next level. I was able to make a new collection to store signup information for users. I also am using it to identify any already existing users on signup. I am able to generate different error codes for signup errors like invalid email addresses, passwords matching or meeting complexity requirements I set. My next step would be to render specific password complexity errors to the user, i.e. missing one uppercase letter or something like that. This project has been a great teacher and I can feel the code I am writing is more streamlined and refactored than I used to write. I can feel myself improving and it is a good feeling. Now that life is finally calming down I am ready to jump back in and tackle this project.",
+  },
+  {
     postNum: 3,
     title: "Post #3 Getting Comfy with Mongo",
     date: "April 2, 2024",

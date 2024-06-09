@@ -30,14 +30,10 @@ export default function Signup() {
       await doLoginRealm(); /*get access to realm data needed to run doStoreUserProfileData */
       setLoading(true);
 
-      // if (doCheckIfEmailExists(emailRef.current.value)) {
-      //   throw new Error("email-already-exists");
-      // }
-
-      const emailExists = await doCheckIfEmailExists(emailRef.current.value);
-      if (emailExists) {
+      if (await doCheckIfEmailExists(emailRef.current.value)) {
         throw new Error("email-already-exists");
       }
+
       if (!validateEmailIsAnEmail(emailRef.current.value)) {
         throw new Error("invalid-email-format");
       }

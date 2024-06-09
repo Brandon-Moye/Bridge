@@ -39,15 +39,6 @@ export default function Signup() {
       }
 
       if (
-        !validatePasswordsMatch(
-          passwordRef.current.value,
-          passwordConfirmRef.current.value
-        )
-      ) {
-        throw new Error("passwords-do-not-match");
-      }
-
-      if (
         !validatePasswordRequirements(
           passwordRef.current.value,
           setError,
@@ -57,7 +48,14 @@ export default function Signup() {
         throw new Error("password-requirements-not-met");
       }
 
-      /*need to add code to check MDB for an account, don't like the idea of creating a temp account in Firebase*/
+      if (
+        !validatePasswordsMatch(
+          passwordRef.current.value,
+          passwordConfirmRef.current.value
+        )
+      ) {
+        throw new Error("passwords-do-not-match");
+      }
 
       const userCredentials = await signup(
         emailRef.current.value,
@@ -77,11 +75,11 @@ export default function Signup() {
         case "invalid-email-format":
           setError("Please enter a valid email address");
           break;
-        case "passwords-do-not-match":
-          setError("Passwords do not match");
-          break;
         case "password-requirements-not-met":
           setError("Password not complex enough");
+          break;
+        case "passwords-do-not-match":
+          setError("Passwords do not match");
           break;
       }
       setOpenSnackbar(true);

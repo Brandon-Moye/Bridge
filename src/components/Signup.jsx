@@ -1,7 +1,11 @@
 import React, { useRef, useState } from "react";
 import { useAuth } from "../context/AuthContext";
 import { Link, useNavigate } from "react-router-dom";
-import { doLoginRealm, doStoreUserProfileData } from "../Helpers/Mongo";
+import {
+  doLoginRealm,
+  doCheckIfEmailExists,
+  doStoreUserProfileData,
+} from "../Helpers/Mongo";
 
 import { Alert, AlertTitle, Snackbar } from "@mui/material";
 import { async } from "@firebase/util";
@@ -23,8 +27,17 @@ export default function Signup() {
     setError("");
 
     try {
+      await doLoginRealm(); /*get access to realm data needed to run doStoreUserProfileData */
       setLoading(true);
 
+      // if (doCheckIfEmailExists(emailRef.current.value)) {
+      //   throw new Error("email-already-exists");
+      // }
+
+      const emailExists = await doCheckIfEmailExists(emailRef.current.value);
+      if (emailExists) {
+        throw new Error("email-already-exists");
+      }
       if (!validateEmailIsAnEmail(emailRef.current.value)) {
         throw new Error("invalid-email-format");
       }
@@ -55,8 +68,6 @@ export default function Signup() {
         passwordRef.current.value
       );
 
-      await doLoginRealm(); /*get access to realm data needed to run doStoreUserProfileData */
-
       await doStoreUserProfileData({
         userWhoSignedUp: userCredentials.user.uid,
         email: emailRef.current.value,
@@ -64,6 +75,9 @@ export default function Signup() {
       navigate("/");
     } catch (error) {
       switch (error.message) {
+        case "email-already-exists":
+          setError("Email already in use");
+          break;
         case "invalid-email-format":
           setError("Please enter a valid email address");
           break;

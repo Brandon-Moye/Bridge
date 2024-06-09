@@ -13,6 +13,10 @@ async function doLoginRealm() {
   return await realm.logIn(creds);
 }
 
+async function doCheckIfEmailExists(emailToCheckData) {
+  return await realm.currentUser.functions.checkIfEmailExists(emailToCheckData);
+}
+
 async function doStoreUserProfileData(UserWhoSignedUpData, emailData) {
   return await realm.currentUser.functions.storeUserProfileData(
     UserWhoSignedUpData,
@@ -50,6 +54,7 @@ async function doUserDeletesPost(postIdData) {
 export {
   realm,
   doLoginRealm,
+  doCheckIfEmailExists,
   doStoreUserProfileData,
   doGetData,
   doUploadPost,

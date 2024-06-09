@@ -102,9 +102,26 @@ export default function Signup() {
 
   /*make sure the password is to my liking, need to add more rules */
   function validatePasswordRequirements(password) {
-    return /[A-Z]/.test(password);
-  }
+    const minLength = 12;
+    const criteria = [
+      { regex: /[A-Z]/, passwordError: "one uppercase letter" },
+      { regex: /[a-z]/, passwordError: "one lowercase letter" },
+      { regex: /\d/, error: "one number" },
+      {
+        regex: /[!@#$%^&*(),.?":{}|<>]/,
+        passwordError: "one special character",
+      },
+      { regex: /.{12}/, passwordError: `${minLength} characters` },
+    ];
 
+    const criteriaNotMet = criteria.filter(
+      (criteria) => !criteria.regex.test(password)
+    );
+
+    if (criteriaNotMet.length > 0) {
+      return false;
+    } else return true;
+  }
   const handleCloseSnackbar = (reason) => {
     if (reason === "clickaway") {
       return;

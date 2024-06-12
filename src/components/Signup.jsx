@@ -8,7 +8,7 @@ import {
 } from "../Helpers/Mongo";
 
 import { Alert, AlertTitle, Snackbar } from "@mui/material";
-import { async } from "@firebase/util";
+import "./Signup.css";
 
 export default function Signup() {
   const emailRef = useRef();
@@ -159,7 +159,7 @@ export default function Signup() {
           ref={passwordRef}
         ></input>
         <label className="passwordConfirmLabel" htmlFor="">
-          password
+          confirm password
         </label>
         <input
           className="passwordConfirmInput"
@@ -174,15 +174,11 @@ export default function Signup() {
         <Link className="loginLink" to="/login">
           Login
         </Link>
-        <Link className="forgotPasswordLink" to="/forgotPassword">
-          Forgot Password?
-        </Link>
-      </form>
-      <div className="blogLinkWrapper">
         <Link className="blogLink" to="/blog">
           Check out the Blog
         </Link>
-      </div>
+      </form>
+      <div className="blogLinkWrapper"></div>
     </div>
   );
 }

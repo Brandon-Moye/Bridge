@@ -20,6 +20,8 @@ export default function Signup() {
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   const [openSnackbar, setOpenSnackbar] = useState(false);
+  const [errorsForPasswordCriteriaNotMet, setErrorsForPasswordCriteriaNotMet] =
+    useState("");
 
   async function handleSubmit(e) {
     e.preventDefault(); /*preventing from refreshing */
@@ -76,7 +78,7 @@ export default function Signup() {
           setError("Please enter a valid email address");
           break;
         case "password-requirements-not-met":
-          setError("Password not complex enough");
+          setError("missing: " + errorsForPasswordCriteriaNotMet);
           break;
         case "passwords-do-not-match":
           setError("Passwords do not match");
@@ -93,23 +95,21 @@ export default function Signup() {
     return regex.test(email.toLowerCase());
   }
 
-  /*write function is password fields are blank */
   function validatePasswordsMatch(password, confirmPassword) {
     return password === confirmPassword;
   }
 
-  /*make sure the password is to my liking, need to add more rules */
   function validatePasswordRequirements(password) {
     const minLength = 12;
     const criteria = [
       { regex: /[A-Z]/, passwordError: "one uppercase letter" },
       { regex: /[a-z]/, passwordError: "one lowercase letter" },
-      { regex: /\d/, error: "one number" },
+      { regex: /\d/, passwordError: "one number" },
       {
         regex: /[!@#$%^&*(),.?":{}|<>]/,
         passwordError: "one special character",
       },
-      { regex: /.{12}/, passwordError: `${minLength} characters` },
+      { regex: /.{12}/, passwordError: `at least ${minLength} characters` },
     ];
 
     const criteriaNotMet = criteria.filter(
@@ -117,6 +117,10 @@ export default function Signup() {
     );
 
     if (criteriaNotMet.length > 0) {
+      const errorsForCriteriaNotMet = criteriaNotMet
+        .map((criteria) => criteria.passwordError)
+        .join(", ");
+      setErrorsForPasswordCriteriaNotMet(errorsForCriteriaNotMet);
       return false;
     } else return true;
   }
@@ -142,7 +146,7 @@ export default function Signup() {
       <form onSubmit={handleSubmit} className="signupForm">
         <h3 className="welcomeTitle">Signup to Join!</h3>
         <label className="emailLabel" htmlFor="">
-          email
+          Email
         </label>
         <input
           className="emailInput"
@@ -150,7 +154,7 @@ export default function Signup() {
           ref={emailRef}
         ></input>
         <label className="passwordLabel" htmlFor="">
-          password
+          Password
         </label>
         <input
           className="passwordInput"
@@ -159,7 +163,7 @@ export default function Signup() {
           ref={passwordRef}
         ></input>
         <label className="passwordConfirmLabel" htmlFor="">
-          confirm password
+          Confirm Password
         </label>
         <input
           className="passwordConfirmInput"

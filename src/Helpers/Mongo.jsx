@@ -17,10 +17,15 @@ async function doCheckIfEmailExists(emailToCheckData) {
   return await realm.currentUser.functions.checkIfEmailExists(emailToCheckData);
 }
 
-async function doStoreUserProfileData(UserWhoSignedUpData, emailData) {
+async function doStoreUserProfileData(
+  UserWhoSignedUpData,
+  emailData,
+  nameData
+) {
   return await realm.currentUser.functions.storeUserProfileData(
     UserWhoSignedUpData,
-    emailData
+    emailData,
+    nameData
   );
 }
 

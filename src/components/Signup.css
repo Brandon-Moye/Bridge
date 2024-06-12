@@ -1,11 +1,29 @@
-.loginPageWrapper {
-}
+
+/* * {
+  font-family: "Lato", sans-serif;
+} */
 
 .signupForm {
-    display: grid;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75rem;
+  max-width: 30rem;
+  margin-top: 7.5rem;
+}
+.welcomeTitle,
+.emailLabel,
+.emailInput,
+.passwordLabel,
+.passwordInput,
+.passwordConfirmLabel,
+.passwordConfirmInput,
+.signupButton {
+  grid-column: 1/-1;
 }
 
-.welcomeTitle {
-    font-weight: 600;
-    font-size: 2rem;
+.blogLinkWrapper {
+  display: flex;
+  justify-content: center;
 }
+

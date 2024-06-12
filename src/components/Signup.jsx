@@ -21,8 +21,7 @@ export default function Signup() {
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   const [openSnackbar, setOpenSnackbar] = useState(false);
-  const [errorsForPasswordCriteriaNotMet, setErrorsForPasswordCriteriaNotMet] =
-    useState("");
+  useState("");
 
   async function handleSubmit(e) {
     e.preventDefault(); /*preventing from refreshing */
@@ -68,6 +67,7 @@ export default function Signup() {
       await doStoreUserProfileData({
         userWhoSignedUp: userCredentials.user.uid,
         email: emailRef.current.value,
+        name: nameRef.current.value,
       });
       navigate("/");
     } catch (error) {

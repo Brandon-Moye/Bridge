@@ -78,7 +78,7 @@ export default function Signup() {
           setError("Please enter a valid email address");
           break;
         case "password-requirements-not-met":
-          setError("missing: " + errorsForPasswordCriteriaNotMet);
+          setError("Password does not meet complexity requirements");
           break;
         case "passwords-do-not-match":
           setError("Passwords do not match");

@@ -11,6 +11,7 @@ import { Alert, AlertTitle, Snackbar } from "@mui/material";
 import "./Signup.css";
 
 export default function Signup() {
+  const nameRef = useRef();
   const emailRef = useRef();
   const passwordRef = useRef();
   const passwordConfirmRef = useRef();
@@ -145,6 +146,10 @@ export default function Signup() {
       </Snackbar>
       <form onSubmit={handleSubmit} className="signupForm">
         <h3 className="welcomeTitle">Signup to Join!</h3>
+        <label className="nameLable" htmlFor="">
+          Name
+        </label>
+        <input className="nameInput" placeholder="Name" ref={nameRef}></input>
         <label className="emailLabel" htmlFor="">
           Email
         </label>

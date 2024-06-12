@@ -178,7 +178,6 @@ export default function Signup() {
           Check out the Blog
         </Link>
       </form>
-      <div className="blogLinkWrapper"></div>
     </div>
   );
 }

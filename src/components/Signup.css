@@ -7,6 +7,8 @@
   margin-top: 7.5rem;
 }
 .welcomeTitle,
+.nameLabel,
+.nameInput,
 .emailLabel,
 .emailInput,
 .passwordLabel,
@@ -17,6 +19,7 @@
   grid-column: 1/-1;
 }
 
+.nameInput,
 .emailInput,
 .passwordInput,
 .passwordConfirmInput {

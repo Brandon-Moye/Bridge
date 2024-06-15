@@ -21,7 +21,6 @@ export default function Signup() {
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   const [openSnackbar, setOpenSnackbar] = useState(false);
-  useState("");
 
   async function handleSubmit(e) {
     e.preventDefault(); /*preventing from refreshing */
@@ -40,13 +39,7 @@ export default function Signup() {
         throw new Error("invalid-email-format");
       }
 
-      if (
-        !validatePasswordRequirements(
-          passwordRef.current.value,
-          setError,
-          setOpenSnackbar
-        )
-      ) {
+      if (!validatePasswordRequirements(passwordRef.current.value, setError)) {
         throw new Error("password-requirements-not-met");
       }
 
@@ -101,7 +94,7 @@ export default function Signup() {
   }
 
   function validatePasswordRequirements(password) {
-    const minLength = 12;
+    const minLength = 10;
     const criteria = [
       { regex: /[A-Z]/, passwordError: "one uppercase letter" },
       { regex: /[a-z]/, passwordError: "one lowercase letter" },
@@ -118,10 +111,6 @@ export default function Signup() {
     );
 
     if (criteriaNotMet.length > 0) {
-      const errorsForCriteriaNotMet = criteriaNotMet
-        .map((criteria) => criteria.passwordError)
-        .join(", ");
-      setErrorsForPasswordCriteriaNotMet(errorsForCriteriaNotMet);
       return false;
     } else return true;
   }
@@ -146,31 +135,43 @@ export default function Signup() {
       </Snackbar>
       <form onSubmit={handleSubmit} className="signupForm">
         <h3 className="welcomeTitle">Signup to Join!</h3>
-        <label className="nameLable" htmlFor="">
+        <label className="nameLable" htmlFor="nameInput">
           Name
         </label>
-        <input className="nameInput" placeholder="Name" ref={nameRef}></input>
-        <label className="emailLabel" htmlFor="">
+        <input
+          id="nameInput"
+          className="nameInput"
+          placeholder="Name"
+          ref={nameRef}
+        ></input>
+        <label className="emailLabel" htmlFor="emailInput">
           Email
         </label>
         <input
+          id="emailInput"
           className="emailInput"
           placeholder="Email"
           ref={emailRef}
         ></input>
-        <label className="passwordLabel" htmlFor="">
+        <label className="passwordLabel" htmlFor="passwordInput">
           Password
         </label>
         <input
+          id="passwordInput"
           className="passwordInput"
           placeholder="Password"
           type="password"
           ref={passwordRef}
         ></input>
-        <label className="passwordConfirmLabel" htmlFor="">
+        <small className="passwordRequirementsCaption">
+          must contain: at least 10 characters, 1 uppercase and 1 lowecase
+          letter, 1 number, and 1 special character
+        </small>
+        <label className="passwordConfirmLabel" htmlFor="passwordConfirmInput">
           Confirm Password
         </label>
         <input
+          id="passwordConfirmInput"
           className="passwordConfirmInput"
           placeholder=" Confirm Password"
           type="password"

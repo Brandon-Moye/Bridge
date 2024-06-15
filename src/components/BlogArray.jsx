@@ -7,7 +7,7 @@ const BlogArray = [
     date: "June 15, 2024",
     postType: "Project Documenting",
     textBody:
-      "I wanted to make sure the login and signup pages were better than my last project. This meant displaying relevant errors to the user, and storing user info in a document database with MonogDB. I will definitely be doing some refactoring. But overall I am happy with where it is at. I've got a great refresher and better understanding with error handling, importing and working with component libraries, and state handling and asynchronous behavior. My next big task will be talking between the two databases I have for user info and post content. I will use the UIDs in Firebase as keys between the databases. This has been a lot of fun and I'm really excited to make more progress. If you're reading this, thanks :)",
+      "I wanted to make sure the login and signup pages were better than my last project. This meant displaying relevant errors to the user, and storing user info in a document database with MonogDB. I will definitely be doing some refactoring. But overall I am happy with where it is at. I've got a great refresher and better understanding with error handling, importing and working with component libraries, and state handling and asynchronous behavior. My next big task will be talking between the two databases I have for user info and post content and planning on how to set these, and other future documents up. I will use the UIDs in Firebase as keys between the databases. This has been a lot of fun and I'm really excited to make more progress. If you're reading this, thanks :)",
   },
   {
     postNum: 4,

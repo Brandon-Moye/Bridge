@@ -6,6 +6,7 @@ import "./Login.css";
 /**
  * need to figure out why it looks like Google might be catching the error before me on signup
  */
+import { Alert, AlertTitle, Snackbar } from "@mui/material";
 export default function Login() {
   const emailRef = useRef();
   const passwordRef = useRef();
@@ -13,6 +14,8 @@ export default function Login() {
 
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
+  const [openSnackbar, setOpenSnackbar] = useState(false);
+
   const navigate = useNavigate();
 
   async function handleSubmit(e) {
@@ -23,36 +26,57 @@ export default function Login() {
       await doLoginRealm(); /*get access to realm data needed to run doStoreUserProfileData */
       setLoading(true);
 
-      if (!doCheckIfEmailExists(emailRef.current.value)) {
-        console.log("not exist");
-        throw new Error("email-doesn't-exist");
-      }
-
-      if (!validateEmailIsAnEmail(emailRef.current.value)) {
-        throw new Error("invalid-email-format");
+      const emailExists = await doCheckIfEmailExists(emailRef.current.value);
+      if (!emailExists) {
+        throw new Error("user-not-found");
       }
 
       await login(emailRef.current.value, passwordRef.current.value);
       navigate("/");
     } catch (error) {
       switch (error.message) {
-        case "email-doesn't-exist":
-          setError("Email not registered");
-          console.log(error);
+        case "user-not-found":
+          setError("User Not Found");
           break;
+        // case "auth/user-not-found":
+        //   setError("User not found");
+        //   break;
+        // case "auth/invalid-email":
+        //   setError("Not a valid email");
+        //   break;
+        // case "auth/missing-password":
+        //   setError("Please enter your password");
+        //   break;
+        // case "auth/wrong-password":
+        //   setError("Incorrect Password");
+        //   break;
+        default:
+          setError("Incorrect Password");
       }
+      setOpenSnackbar(true);
       // setError("Failed to sign in, please check your email or password");
     }
     setLoading(false);
   }
-
-  function validateEmailIsAnEmail(email) {
-    const regex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-    return regex.test(email.toLowerCase());
-  }
-
+  const handleCloseSnackbar = (reason) => {
+    if (reason === "clickaway") {
+      return;
+    }
+    setOpenSnackbar(false);
+  };
   return (
     <div className="loginPageWrapper">
+      <Snackbar
+        anchorOrigin={{ vertical: "top", horizontal: "center" }}
+        open={openSnackbar}
+        autoHideDuration={5000}
+        onClose={handleCloseSnackbar}
+      >
+        <Alert severity="warning">
+          <AlertTitle>Login Error</AlertTitle>
+          {error}
+        </Alert>
+      </Snackbar>
       <form onSubmit={handleSubmit} className="loginForm">
         <h3 className="welcomeTitle">Welcome!</h3>
         <label className="emailLabel" htmlFor="">

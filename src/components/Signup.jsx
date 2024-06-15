@@ -21,7 +21,6 @@ export default function Signup() {
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   const [openSnackbar, setOpenSnackbar] = useState(false);
-  useState("");
 
   async function handleSubmit(e) {
     e.preventDefault(); /*preventing from refreshing */
@@ -40,13 +39,7 @@ export default function Signup() {
         throw new Error("invalid-email-format");
       }
 
-      if (
-        !validatePasswordRequirements(
-          passwordRef.current.value,
-          setError,
-          setOpenSnackbar
-        )
-      ) {
+      if (!validatePasswordRequirements(passwordRef.current.value, setError)) {
         throw new Error("password-requirements-not-met");
       }
 
@@ -118,10 +111,6 @@ export default function Signup() {
     );
 
     if (criteriaNotMet.length > 0) {
-      const errorsForCriteriaNotMet = criteriaNotMet
-        .map((criteria) => criteria.passwordError)
-        .join(", ");
-      setErrorsForPasswordCriteriaNotMet(errorsForCriteriaNotMet);
       return false;
     } else return true;
   }

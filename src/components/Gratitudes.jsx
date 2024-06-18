@@ -17,6 +17,7 @@ export default function Gratitudes({ item, onEdit, onDelete }) {
     <div className="gratitudesWrapper">
       <div>{item.post}</div>
       <div>{item.name}</div>
+      <div>{item.timestamp}</div>
       <button onClick={handleEditClick}>Edit</button>
       <button onClick={handleDeleteClick}>Delete</button>
     </div>

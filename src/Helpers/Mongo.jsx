@@ -38,10 +38,11 @@ async function doGetYourPostsOnly(userId) {
   return await realm.currentUser.functions.getYourPostsOnly(userId);
 }
 
-async function doUploadPost(postData, userWhoPostedData) {
+async function doUploadPost(postData, userWhoPostedData, timestampData) {
   return await realm.currentUser.functions.uploadPost(
     postData,
-    userWhoPostedData
+    userWhoPostedData,
+    timestampData
   );
 }
 

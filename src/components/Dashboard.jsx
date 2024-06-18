@@ -50,8 +50,18 @@ export default function Dashboard() {
       if (!postContent.trim()) {
         throw new Error("Post content cannot be empty.");
       }
-
-      await doUploadPost({ post: postContent, userWhoPosted: currentUser.uid }); // Pass an object with the 'post' property
+      const datePostedRaw = new Date();
+      const datePostedFormat = new Intl.DateTimeFormat("en-us", {
+        dateStyle: "medium",
+        timeStyle: "short",
+      });
+      const datePostedFormatted = datePostedFormat.format(datePostedRaw);
+      console.log(datePostedRaw);
+      await doUploadPost({
+        post: postContent,
+        userWhoPosted: currentUser.uid,
+        postTimestamp: datePostedFormatted,
+      }); // Pass an object with the 'post' property
       setPostContent(""); // Clear textarea content after successful submission
       handleSubmitTrigger(); // trigger useEffect in DataProvider
       console.log(currentUser.uid);

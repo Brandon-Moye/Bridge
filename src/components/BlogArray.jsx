@@ -2,6 +2,14 @@ import React from "react";
 
 const BlogArray = [
   {
+    postNum: 6,
+    title: "Post #6 Life... Finds a Way (to get in the way)",
+    date: "July 10, 2024",
+    postType: "Personal",
+    textBody:
+      "Oh my goodness... the past few weeks have been absolutely insane. Shortly after my last post we began a huge software and hardware upgrade of one of my control systems. While that was an amazing opportunity and I learned a lot, it absolutely ate up all of my time and energy. There were a lot of long stressful days, but it is done now and my area is in a much more stable place. After all my hard work I was rewarded with being sick for over a week. The intense tonsillitis, aches, and exhaustion really ended this whole chapter wonderfully... Now its game time yet again. I just fixed my date formatting and can render posts in reverse chronological order which is another great step. I'm ready to get back to work.",
+  },
+  {
     postNum: 5,
     title: "Post #5 Moving passed Signup and Login Pages",
     date: "June 15, 2024",

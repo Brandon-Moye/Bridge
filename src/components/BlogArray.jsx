@@ -2,12 +2,19 @@ import React from "react";
 
 const BlogArray = [
   {
-    postNum: 6,
+    postNum: 7,
     title: "Post #6 Life... Finds a Way (to get in the way)",
     date: "July 10, 2024",
     postType: "Personal",
     textBody:
       "Oh my goodness... the past few weeks have been absolutely insane. Shortly after my last post we began a huge software and hardware upgrade of one of my control systems. While that was an amazing opportunity and I learned a lot, it absolutely ate up all of my time and energy. There were a lot of long stressful days, but it is done now and my area is in a much more stable place. After all my hard work I was rewarded with being sick for over a week. The intense tonsillitis, aches, and exhaustion really ended this whole chapter wonderfully... Now its game time yet again. I just fixed my date formatting and can render posts in reverse chronological order which is another great step. I'm ready to get back to work.",
+  },
+  {
+    postNum: 6,
+    title: "Aggregation Pipelines & Rendering Relevant Data",
+    date: "June 18, 2024",
+    textBody:
+      "I am so excited to move on to the next part of the project. I was able to upload UIDs and post content to MongoDB and render that to the page. Now I am able to lookup data from both collections and push it to my client side in a nice object I can easily render on the DOM to show a typical data like the username, post content, and date posted. My next step will be to build a project page to edit user information, and determine how I want to render data like a traditional timeline does in small batches.",
   },
   {
     postNum: 5,

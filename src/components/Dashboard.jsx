@@ -51,12 +51,11 @@ export default function Dashboard() {
         throw new Error("Post content cannot be empty.");
       }
       const datePostedRaw = new Date();
-      const datePostedFormat = new Intl.DateTimeFormat("en-us", {
-        dateStyle: "medium",
-        timeStyle: "short",
-      });
-      const datePostedFormatted = datePostedFormat.format(datePostedRaw);
-      console.log(datePostedRaw);
+      // const datePostedFormat = new Intl.DateTimeFormat("en-us", {
+      //   dateStyle: "medium",
+      //   timeStyle: "short",
+      // });
+      const datePostedFormatted = datePostedRaw.toISOString();
       await doUploadPost({
         post: postContent,
         userWhoPosted: currentUser.uid,

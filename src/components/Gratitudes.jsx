@@ -12,12 +12,24 @@ export default function Gratitudes({ item, onEdit, onDelete }) {
   const handleDeleteClick = () => {
     onDelete(item._id.toString());
   };
-  // console.log(props.item);
+  const date = new Date(item.timestamp);
+  const formattedDate = date.toLocaleDateString("en-US", {
+    month: "short",
+    day: "numeric",
+    year: "2-digit",
+  });
+  const formattedTime = date.toLocaleTimeString("en-US", {
+    hour: "numeric",
+    minute: "numeric",
+    hour12: "true",
+  });
   return (
     <div className="gratitudesWrapper">
       <div>{item.post}</div>
       <div>{item.name}</div>
-      <div>{item.timestamp}</div>
+      <div>
+        {formattedDate} {formattedTime}
+      </div>
       <button onClick={handleEditClick}>Edit</button>
       <button onClick={handleDeleteClick}>Delete</button>
     </div>

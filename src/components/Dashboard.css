@@ -1,7 +1,17 @@
-.blogLink {
-  color: teal;
+.postGratitudeButton {
+  color: white;
+  background-color: #48a684;
 }
 
-.postForm {
-  display: grid;
+.postGratitudeButton:hover {
+  background-color: #32745c;
+}
+
+.deleteDiscardButton {
+  color: white;
+  background-color: #ef565b;
+}
+
+.deleteDiscardButton:hover {
+  background-color: #a73c40;
 }

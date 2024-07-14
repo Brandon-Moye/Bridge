@@ -1,5 +1,6 @@
 import React from "react";
 import { Button, Modal, Box } from "@mui/material";
+import "./Gratitudes.css";
 export default function Gratitudes({
   item,
   onEdit,
@@ -41,7 +42,9 @@ export default function Gratitudes({
         {formattedDate} {formattedTime}
       </div>
       <Button onClick={hanldeOpenEditModalClick}>Edit</Button>
-      <Button onClick={handleDeleteClick}>Delete</Button>
+      <Button onClick={handleDeleteClick} className="deleteDiscardButton">
+        Delete
+      </Button>
     </div>
   );
 }

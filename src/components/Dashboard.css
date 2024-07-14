@@ -1,6 +1,13 @@
-.createPostModal {
-  font-size: 8rem;
-  height: 5rem;
-  width: 10rem;
-  background-color: white;
+.blogLinkWrapper {
+}
+
+.blogLink {
+  color: teal;
+}
+
+.postForm {
+  display: grid;
+}
+
+.editPostForm {
 }

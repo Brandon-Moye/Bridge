@@ -17,3 +17,8 @@
   display: flex;
   justify-content: center;
 }
+
+.welcomeTitle {
+  color: blue;
+  font-weight: 600;
+}

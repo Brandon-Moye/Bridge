@@ -1,9 +1,19 @@
 import React from "react";
-
-export default function Gratitudes({ item, onEdit, onDelete }) {
+import { Button, Modal, Box } from "@mui/material";
+export default function Gratitudes({
+  item,
+  onEdit,
+  onDelete,
+  onOpenEditModal,
+}) {
   if (!item || !item.post) {
     return null;
   }
+
+  const hanldeOpenEditModalClick = () => {
+    onEdit(item._id.toString());
+    onOpenEditModal();
+  };
 
   const handleEditClick = () => {
     onEdit(item._id.toString());
@@ -30,6 +40,7 @@ export default function Gratitudes({ item, onEdit, onDelete }) {
       <div>
         {formattedDate} {formattedTime}
       </div>
+      <Button onClick={hanldeOpenEditModalClick}>Edit</Button>
       <button onClick={handleEditClick}>Edit</button>
       <button onClick={handleDeleteClick}>Delete</button>
     </div>

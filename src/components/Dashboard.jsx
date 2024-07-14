@@ -22,6 +22,7 @@ export default function Dashboard() {
   const [editPostContent, setEditPostContent] = useState(""); //state to hold edit text
   const [editPostText, setEditPostText] = useState("");
   const [postModalVisible, setPostModalVisible] = useState(false);
+  const [editModalVisible, setEditModalVisible] = useState(false);
   const navigate = useNavigate();
 
   const { logout, currentUser } = useAuth();
@@ -53,10 +54,6 @@ export default function Dashboard() {
         throw new Error("Post content cannot be empty.");
       }
       const datePostedRaw = new Date();
-      // const datePostedFormat = new Intl.DateTimeFormat("en-us", {
-      //   dateStyle: "medium",
-      //   timeStyle: "short",
-      // });
       const datePostedFormatted = datePostedRaw.toISOString();
       await doUploadPost({
         post: postContent,
@@ -79,17 +76,16 @@ export default function Dashboard() {
       await doUserEditsPost({
         postId: updatersId,
         newPostContent: editPostText,
-        // postId: "66098663fc970e2a672a55d0",
       });
       setEditPostText("");
       handleSubmitTrigger(); // trigger useEffect in DataProvider
+      closeEditModal();
     } catch (error) {
       console.log(error);
     }
   }
 
   async function loadUsersPostToEditField(postId) {
-    // console.log(postId);
     const findPostToEdit = justYourData.find(
       (item) => item._id.toString() === postId
     );
@@ -106,23 +102,19 @@ export default function Dashboard() {
     }
   }
 
-  const gratitudesFeed = justYourData.map((item) => {
-    return (
-      <Gratitudes
-        key={item._id}
-        item={item}
-        onEdit={loadUsersPostToEditField}
-        onDelete={deleteUsersPost}
-      />
-    );
-  });
-
   const closePostModal = () => {
     return setPostModalVisible(false);
   };
 
   const openPostModal = () => {
     return setPostModalVisible(true);
+  };
+  const closeEditModal = () => {
+    return setEditModalVisible(false);
+  };
+
+  const openEditModal = () => {
+    return setEditModalVisible(true);
   };
   const style = {
     position: "absolute",
@@ -135,6 +127,18 @@ export default function Dashboard() {
     boxShadow: 24,
     p: 4,
   };
+
+  const gratitudesFeed = justYourData.map((item) => {
+    return (
+      <Gratitudes
+        key={item._id}
+        item={item}
+        onEdit={loadUsersPostToEditField}
+        onDelete={deleteUsersPost}
+        onOpenEditModal={openEditModal}
+      />
+    );
+  });
 
   return (
     <div>
@@ -153,7 +157,7 @@ export default function Dashboard() {
           }
         }}
       >
-        <Box sx={style} className="createPostModal">
+        <Box sx={style}>
           <textarea
             value={postContent}
             onChange={(e) => setPostContent(e.target.value)}
@@ -164,6 +168,27 @@ export default function Dashboard() {
           ></textarea>
           <Button onClick={handleSubmit}>Post Gratitude</Button>
           <Button onClick={closePostModal}>Discard</Button>
+        </Box>
+      </Modal>
+      <Modal
+        open={editModalVisible}
+        onClose={(event, reason) => {
+          if (reason !== "backdropClick") {
+            closePostModal();
+          }
+        }}
+      >
+        <Box sx={style}>
+          <textarea
+            value={editPostText}
+            onChange={(e) => setEditPostText(e.target.value)}
+            name=""
+            id=""
+            cols="30"
+            rows="10"
+          ></textarea>
+          <Button onClick={handleUserUpdatePost}>Update</Button>
+          <Button onClick={closeEditModal}>Discard</Button>
         </Box>
       </Modal>
       <form onSubmit={handleSubmit} action="">

@@ -117,11 +117,11 @@ export default function Dashboard() {
     );
   });
 
-  const closePostModule = () => {
+  const closePostModal = () => {
     return setPostModalVisible(false);
   };
 
-  const openPostModule = () => {
+  const openPostModal = () => {
     return setPostModalVisible(true);
   };
   const style = {
@@ -144,10 +144,19 @@ export default function Dashboard() {
           Check out the Blog
         </Link>
       </div>
-      <Button onClick={openPostModule}>Gratitude</Button>
-      <Modal open={postModalVisible} onClose={closePostModule}>
+      <Button onClick={openPostModal}>Gratitude</Button>
+      <Modal
+        open={postModalVisible}
+        onClose={(event, reason) => {
+          if (reason !== "backdropClick") {
+            closePostModal();
+          }
+        }}
+      >
         <Box sx={style} className="createPostModal">
-          Content
+          <textarea name="" id="" cols="30" rows="10"></textarea>
+          <Button>Post Gratitude</Button>
+          <Button onClick={closePostModal}>Discard</Button>
         </Box>
       </Modal>
       <form onSubmit={handleSubmit} action="">

@@ -12,6 +12,7 @@ import { db } from "../../firebase";
 import { useState, useContext } from "react";
 import { async } from "@firebase/util";
 import { Link } from "react-router-dom";
+import { Button, Modal, Box } from "@mui/material";
 
 export default function Dashboard() {
   const { data, isLoadingData, justYourData, handleSubmitTrigger } =
@@ -20,6 +21,7 @@ export default function Dashboard() {
   const [postContent, setPostContent] = useState(""); //state to hold post
   const [editPostContent, setEditPostContent] = useState(""); //state to hold edit text
   const [editPostText, setEditPostText] = useState("");
+  const [postModalVisible, setPostModalVisible] = useState(false);
   const navigate = useNavigate();
 
   const { logout, currentUser } = useAuth();
@@ -115,6 +117,25 @@ export default function Dashboard() {
     );
   });
 
+  const closePostModule = () => {
+    return setPostModalVisible(false);
+  };
+
+  const openPostModule = () => {
+    return setPostModalVisible(true);
+  };
+  const style = {
+    position: "absolute",
+    top: "50%",
+    left: "50%",
+    transform: "translate(-50%, -50%)",
+    width: 400,
+    bgcolor: "background.paper",
+    border: "2px solid #000",
+    boxShadow: 24,
+    p: 4,
+  };
+
   return (
     <div>
       <p>welcome to the dashboard</p>
@@ -123,7 +144,12 @@ export default function Dashboard() {
           Check out the Blog
         </Link>
       </div>
-
+      <Button onClick={openPostModule}>Gratitude</Button>
+      <Modal open={postModalVisible} onClose={closePostModule}>
+        <Box sx={style} className="createPostModal">
+          Content
+        </Box>
+      </Modal>
       <form onSubmit={handleSubmit} action="">
         <textarea
           value={postContent}

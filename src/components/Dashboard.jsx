@@ -201,7 +201,7 @@ export default function Dashboard() {
         ></textarea>
         <button type="sumbit">Post</button>
       </form>
-      <form onSubmit={handleUserUpdatePost} action="">
+      <form classNam="postForm editPostForm" onSubmit={handleUserUpdatePost} action="">
         <textarea
           value={editPostText}
           onChange={(e) => setEditPostText(e.target.value)}

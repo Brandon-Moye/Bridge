@@ -65,7 +65,7 @@ export default function Dashboard() {
       }); // Pass an object with the 'post' property
       setPostContent(""); // Clear textarea content after successful submission
       handleSubmitTrigger(); // trigger useEffect in DataProvider
-      console.log(currentUser.uid);
+      closePostModal();
     } catch (error) {
       console.error("Error uploading post to site:", error);
       setError(error.message);
@@ -154,8 +154,15 @@ export default function Dashboard() {
         }}
       >
         <Box sx={style} className="createPostModal">
-          <textarea name="" id="" cols="30" rows="10"></textarea>
-          <Button>Post Gratitude</Button>
+          <textarea
+            value={postContent}
+            onChange={(e) => setPostContent(e.target.value)}
+            name=""
+            id=""
+            cols="30"
+            rows="10"
+          ></textarea>
+          <Button onClick={handleSubmit}>Post Gratitude</Button>
           <Button onClick={closePostModal}>Discard</Button>
         </Box>
       </Modal>

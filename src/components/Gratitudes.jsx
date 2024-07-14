@@ -41,8 +41,7 @@ export default function Gratitudes({
         {formattedDate} {formattedTime}
       </div>
       <Button onClick={hanldeOpenEditModalClick}>Edit</Button>
-      <button onClick={handleEditClick}>Edit</button>
-      <button onClick={handleDeleteClick}>Delete</button>
+      <Button onClick={handleDeleteClick}>Delete</Button>
     </div>
   );
 }

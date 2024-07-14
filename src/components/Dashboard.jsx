@@ -26,14 +26,6 @@ export default function Dashboard() {
   const navigate = useNavigate();
 
   const { logout, currentUser } = useAuth();
-  async function handleIncrement() {
-    const userRef = doc(db, "users", currentUser.uid);
-    await setDoc(
-      userRef,
-      { counter: increment(1), timestamp: serverTimestamp() },
-      { merge: true }
-    );
-  }
 
   async function handleLogout() {
     setError("");
@@ -103,6 +95,7 @@ export default function Dashboard() {
   }
 
   const closePostModal = () => {
+    setPostContent("");
     return setPostModalVisible(false);
   };
 
@@ -190,7 +183,8 @@ export default function Dashboard() {
           <Button onClick={closeEditModal}>Discard</Button>
         </Box>
       </Modal>
-      <form onSubmit={handleSubmit} action="">
+
+      {/* <form onSubmit={handleSubmit} action="">
         <textarea
           value={postContent}
           onChange={(e) => setPostContent(e.target.value)}
@@ -200,8 +194,13 @@ export default function Dashboard() {
           rows="10"
         ></textarea>
         <button type="sumbit">Post</button>
-      </form>
-      <form classNam="postForm editPostForm" onSubmit={handleUserUpdatePost} action="">
+      </form> */}
+
+      {/* <form
+        classNam="postForm editPostForm"
+        onSubmit={handleUserUpdatePost}
+        action=""
+      >
         <textarea
           value={editPostText}
           onChange={(e) => setEditPostText(e.target.value)}
@@ -211,11 +210,10 @@ export default function Dashboard() {
           rows="10"
         ></textarea>
         <button type="sumbit">Update</button>
-      </form>
-      <button onClick={handleIncrement}>Increment database</button>
-      <button onClick={handleLogout} type="link">
+      </form> */}
+      <Button onClick={handleLogout} type="link">
         Logout
-      </button>
+      </Button>
       <p>{isLoadingData ? "loading..." : "loaded!"}</p>
       <p>{data ? "I got it!" : "I don't got it"}</p>
       {/* {data.map((data) => {

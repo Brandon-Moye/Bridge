@@ -1,12 +1,14 @@
+
 .blogLinkWrapper {
 }
 
-.blogLink{    
-    color: teal;
+.blogLink {
+  color: teal;
 }
 
 .postForm {
-    display: grid;
+  display: grid;
 }
 
-.editPostForm{}
+.editPostForm {
+}

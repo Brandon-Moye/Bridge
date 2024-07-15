@@ -57,6 +57,9 @@ async function doUserDeletesPost(postIdData) {
   return await realm.currentUser.functions.userDeletesPost(postIdData);
 }
 
+async function doGetUserProfileData(userId) {
+  return await realm.currentUser.functions.getUserProfileData(userId);
+}
 export {
   realm,
   doLoginRealm,
@@ -67,4 +70,5 @@ export {
   doGetYourPostsOnly,
   doUserEditsPost,
   doUserDeletesPost,
+  doGetUserProfileData,
 };

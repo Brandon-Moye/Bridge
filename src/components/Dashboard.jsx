@@ -13,6 +13,7 @@ import { useState, useContext } from "react";
 import { async } from "@firebase/util";
 import { Link } from "react-router-dom";
 import { Button, Modal, Box } from "@mui/material";
+import "./Dashboard.css";
 
 export default function Dashboard() {
   const { data, isLoadingData, justYourData, handleSubmitTrigger } =
@@ -134,13 +135,15 @@ export default function Dashboard() {
   });
   return (
     <div>
-      <p>welcome to the dashboard</p>
+      <p className="welcome">welcome to the dashboard</p>
       <div className="blogLinkWrapper">
         <Link className="blogLink" to="/blog">
           Check out the Blog
         </Link>
       </div>
-      <Button onClick={openPostModal}>Gratitude</Button>
+      <Button onClick={openPostModal} className="postGratitudeButton">
+        Gratitude
+      </Button>
       <Modal
         open={postModalVisible}
         onClose={(event, reason) => {
@@ -159,7 +162,9 @@ export default function Dashboard() {
             rows="10"
           ></textarea>
           <Button onClick={handleSubmit}>Post Gratitude</Button>
-          <Button onClick={closePostModal}>Discard</Button>
+          <Button onClick={closePostModal} className="deleteDiscardButton">
+            Discard
+          </Button>
         </Box>
       </Modal>
       <Modal
@@ -180,7 +185,9 @@ export default function Dashboard() {
             rows="10"
           ></textarea>
           <Button onClick={handleUserUpdatePost}>Update</Button>
-          <Button onClick={closeEditModal}>Discard</Button>
+          <Button onClick={closeEditModal} className="deleteDiscardButton">
+            Discard
+          </Button>
         </Box>
       </Modal>
 
@@ -214,6 +221,7 @@ export default function Dashboard() {
       <Button onClick={handleLogout} type="link">
         Logout
       </Button>
+      <Link to="/profile">Profile</Link>
       <p>{isLoadingData ? "loading..." : "loaded!"}</p>
       <p>{data ? "I got it!" : "I don't got it"}</p>
       {/* {data.map((data) => {

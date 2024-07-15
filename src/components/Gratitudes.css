@@ -1,9 +1,8 @@
-.postTextContent{}
+.deleteDiscardButton {
+  color: white;
+  background-color: #ef565b;
+}
 
-.postTextContent{}
-
-.postUsername{}
-
-.postEditButton{}
-
-.postDeleteButton{}
+.deleteDiscardButton:hover {
+  background-color: #a73c40;
+}

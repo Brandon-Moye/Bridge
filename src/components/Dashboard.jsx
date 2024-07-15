@@ -135,7 +135,7 @@ export default function Dashboard() {
   });
   return (
     <div>
-      <p>welcome to the dashboard</p>
+      <p className="welcome">welcome to the dashboard</p>
       <div className="blogLinkWrapper">
         <Link className="blogLink" to="/blog">
           Check out the Blog
@@ -221,6 +221,7 @@ export default function Dashboard() {
       <Button onClick={handleLogout} type="link">
         Logout
       </Button>
+      <Link to="/profile">Profile</Link>
       <p>{isLoadingData ? "loading..." : "loaded!"}</p>
       <p>{data ? "I got it!" : "I don't got it"}</p>
       {/* {data.map((data) => {

@@ -12,7 +12,7 @@ import { db } from "../../firebase";
 import { useState, useContext } from "react";
 import { async } from "@firebase/util";
 import { Link } from "react-router-dom";
-import { Button, Modal, Box } from "@mui/material";
+import { Button, Modal, Box, styled } from "@mui/material";
 import "./Dashboard.css";
 
 export default function Dashboard() {
@@ -122,6 +122,11 @@ export default function Dashboard() {
     p: 4,
   };
 
+  const GreenButton = styled(Button)(({ theme }) => ({
+    backgroundColor: "#48a684",
+    color: "#fff",
+  }));
+
   const gratitudesFeed = justYourData.map((item) => {
     return (
       <Gratitudes
@@ -141,9 +146,14 @@ export default function Dashboard() {
           Check out the Blog
         </Link>
       </div>
-      <Button onClick={openPostModal} className="postGratitudeButton">
+      <GreenButton
+        onClick={openPostModal}
+        // className="postGratitudeButton"
+        variant="contained"
+        color="inherit"
+      >
         Gratitude
-      </Button>
+      </GreenButton>
       <Modal
         open={postModalVisible}
         onClose={(event, reason) => {
@@ -190,57 +200,12 @@ export default function Dashboard() {
           </Button>
         </Box>
       </Modal>
-
-      {/* <form onSubmit={handleSubmit} action="">
-        <textarea
-          value={postContent}
-          onChange={(e) => setPostContent(e.target.value)}
-          name=""
-          id=""
-          cols="30"
-          rows="10"
-        ></textarea>
-        <button type="sumbit">Post</button>
-      </form> */}
-
-      {/* <form
-        classNam="postForm editPostForm"
-        onSubmit={handleUserUpdatePost}
-        action=""
-      >
-        <textarea
-          value={editPostText}
-          onChange={(e) => setEditPostText(e.target.value)}
-          name=""
-          id=""
-          cols="30"
-          rows="10"
-        ></textarea>
-        <button type="sumbit">Update</button>
-      </form> */}
       <Button onClick={handleLogout} type="link">
         Logout
       </Button>
       <Link to="/profile">Profile</Link>
       <p>{isLoadingData ? "loading..." : "loaded!"}</p>
       <p>{data ? "I got it!" : "I don't got it"}</p>
-      {/* {data.map((data) => {
-        return (
-          <p key={data._id}>
-            {data.post} by: {data.userId}
-          </p>
-        );
-      })} */}
-
-      {/** this was the initial way of rendering conent on the page */}
-      {/* {justYourData.map((justYourData) => {
-        return (
-          <p key={justYourData._id}>
-            {justYourData.post}, Post id: {justYourData._id.toString()}
-          </p>
-        );
-      })} */}
-
       {gratitudesFeed}
     </div>
   );

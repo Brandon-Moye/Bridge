@@ -1,7 +1,7 @@
-import React, { useRef, useState } from "react";
+import React, { useRef, useState, useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
-const { handleSubmitTrigger } = useContext(DataContext);
+import { DataContext } from "../Helpers/DataProvider";
 
 import { doLoginRealm, doCheckIfEmailExists } from "../Helpers/Mongo";
 import "./Login.css";
@@ -10,6 +10,7 @@ import "./Login.css";
  */
 import { Alert, AlertTitle, Snackbar } from "@mui/material";
 export default function Login() {
+  const { handleSubmitTrigger } = useContext(DataContext);
   const emailRef = useRef();
   const passwordRef = useRef();
   const { login } = useAuth();

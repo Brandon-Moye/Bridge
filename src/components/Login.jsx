@@ -1,6 +1,8 @@
 import React, { useRef, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
+const { handleSubmitTrigger } = useContext(DataContext);
+
 import { doLoginRealm, doCheckIfEmailExists } from "../Helpers/Mongo";
 import "./Login.css";
 /**
@@ -33,6 +35,7 @@ export default function Login() {
 
       await login(emailRef.current.value, passwordRef.current.value);
       navigate("/");
+      handleSubmitTrigger();
     } catch (error) {
       switch (error.message) {
         case "user-not-found":

@@ -10,7 +10,6 @@ Tech used:
 ### MongoDB 🍃  
 ### Firebase 🔥  
 ### MUI Component Library  
-
 Written with React
 
 ### MongoDB Components

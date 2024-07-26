@@ -26,3 +26,7 @@ Editing Posts
 
 Connecting MongoDB to the code base
 - The information and acccess to the MongoDB Atlas and App functions are passed down through a provider
+
+
+### Stay Positive
+The intended use for this app is for users to daily (or more) record their gratitudes. 

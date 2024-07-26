@@ -20,4 +20,9 @@ Post
 
 Rendering Posts
 - An aggregation pipeline is used to search, combine, and sort the data by using the Firebase UID in both collections
-- This returns an object containing the preferred name (from the user collection), post content, and date posted (from the post collection)
+- This returns an object containing the preferred name (from the user collection), post content, and date posted (from the post collection) in reverse chronological order
+
+Editing Posts
+
+Connecting MongoDB to the code base
+- The information and acccess to the MongoDB Atlas and App functions are passed down through a provider

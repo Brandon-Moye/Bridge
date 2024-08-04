@@ -13,6 +13,7 @@ import { useState, useContext } from "react";
 import { async } from "@firebase/util";
 import { Link } from "react-router-dom";
 import { Button, Modal, Box, styled } from "@mui/material";
+import { GreenButton } from "./MuiCustom";
 import "./Dashboard.css";
 
 export default function Dashboard() {
@@ -122,10 +123,10 @@ export default function Dashboard() {
     p: 4,
   };
 
-  const GreenButton = styled(Button)(({ theme }) => ({
-    backgroundColor: "#48a684",
-    color: "#fff",
-  }));
+  // const GreenButton = styled(Button)(({ theme }) => ({
+  //   backgroundColor: "#48a684",
+  //   color: "#fff",
+  // }));
 
   const gratitudesFeed = justYourData.map((item) => {
     return (

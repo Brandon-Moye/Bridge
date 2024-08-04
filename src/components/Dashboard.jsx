@@ -212,7 +212,7 @@ export default function Dashboard() {
 
       <p>{isLoadingData ? "loading..." : ""}</p>
       {/* <p>{data ? "I got it!" : "I don't got it"}</p> */}
-      {gratitudesFeed}
+      <div className="gratitudeComponentContainer">{gratitudesFeed}</div>
     </div>
   );
 }

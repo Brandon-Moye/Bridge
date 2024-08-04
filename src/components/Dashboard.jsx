@@ -13,7 +13,7 @@ import { useState, useContext } from "react";
 import { async } from "@firebase/util";
 import { Link } from "react-router-dom";
 import { Button, Modal, Box, styled } from "@mui/material";
-import { GreenButton } from "./MuiCustom";
+import { GreenButton, RedButton, YellowButton, NavButton } from "./MuiCustom";
 import "./Dashboard.css";
 
 export default function Dashboard() {
@@ -123,11 +123,6 @@ export default function Dashboard() {
     p: 4,
   };
 
-  // const GreenButton = styled(Button)(({ theme }) => ({
-  //   backgroundColor: "#48a684",
-  //   color: "#fff",
-  // }));
-
   const gratitudesFeed = justYourData.map((item) => {
     return (
       <Gratitudes
@@ -141,18 +136,19 @@ export default function Dashboard() {
   });
   return (
     <div>
-      <p className="welcome">welcome to the dashboard</p>
-      <div className="blogLinkWrapper">
-        <Link className="blogLink" to="/blog">
-          Check out the Blog
-        </Link>
-      </div>
-      <GreenButton
-        onClick={openPostModal}
-        // className="postGratitudeButton"
-        variant="contained"
-        color="inherit"
-      >
+      <nav className="navigation">
+        <NavButton component={Link} to="/blog" size="small">
+          Blog
+        </NavButton>
+        <NavButton component={Link} to="/profile" size="small">
+          Profile
+        </NavButton>
+        <NavButton onClick={handleLogout} type="link" size="small">
+          Logout
+        </NavButton>
+      </nav>
+      <p className="welcome">Track your gratitudes below</p>
+      <GreenButton onClick={openPostModal} variant="contained" size="small">
         Gratitude
       </GreenButton>
       <Modal
@@ -172,10 +168,16 @@ export default function Dashboard() {
             cols="30"
             rows="10"
           ></textarea>
-          <Button onClick={handleSubmit}>Post Gratitude</Button>
-          <Button onClick={closePostModal} className="deleteDiscardButton">
+          <GreenButton onClick={handleSubmit} variant="contained" size="small">
+            Post
+          </GreenButton>
+          <YellowButton
+            onClick={closePostModal}
+            variant="contained"
+            size="small"
+          >
             Discard
-          </Button>
+          </YellowButton>
         </Box>
       </Modal>
       <Modal
@@ -195,18 +197,21 @@ export default function Dashboard() {
             cols="30"
             rows="10"
           ></textarea>
-          <Button onClick={handleUserUpdatePost}>Update</Button>
-          <Button onClick={closeEditModal} className="deleteDiscardButton">
+          <GreenButton onClick={handleUserUpdatePost} size="small">
+            Update
+          </GreenButton>
+          <YellowButton
+            onClick={closeEditModal}
+            variant="contained"
+            size="small"
+          >
             Discard
-          </Button>
+          </YellowButton>
         </Box>
       </Modal>
-      <Button onClick={handleLogout} type="link">
-        Logout
-      </Button>
-      <Link to="/profile">Profile</Link>
-      <p>{isLoadingData ? "loading..." : "loaded!"}</p>
-      <p>{data ? "I got it!" : "I don't got it"}</p>
+
+      <p>{isLoadingData ? "loading..." : ""}</p>
+      {/* <p>{data ? "I got it!" : "I don't got it"}</p> */}
       {gratitudesFeed}
     </div>
   );

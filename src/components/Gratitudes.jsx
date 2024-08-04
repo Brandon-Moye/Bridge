@@ -1,6 +1,8 @@
 import React from "react";
 import { Button, Modal, Box } from "@mui/material";
 import "./Gratitudes.css";
+import { RedButton, BlueButton, YellowButton } from "./MuiCustom";
+
 export default function Gratitudes({
   item,
   onEdit,
@@ -36,15 +38,26 @@ export default function Gratitudes({
   });
   return (
     <div className="gratitudesWrapper">
-      <div>{item.post}</div>
-      <div>{item.name}</div>
-      <div>
+      <div className="postContent">{item.post}</div>
+      <div className="userName">{item.name}</div>
+      <div className="postTime">
         {formattedDate} {formattedTime}
       </div>
-      <Button onClick={hanldeOpenEditModalClick}>Edit</Button>
-      <Button onClick={handleDeleteClick} className="deleteDiscardButton">
+      <BlueButton
+        onClick={hanldeOpenEditModalClick}
+        variant="contained"
+        size="small"
+      >
+        Edit
+      </BlueButton>
+      <RedButton
+        onClick={handleDeleteClick}
+        className="deleteDiscardButton"
+        variant="contained"
+        size="small"
+      >
         Delete
-      </Button>
+      </RedButton>
     </div>
   );
 }

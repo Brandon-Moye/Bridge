@@ -13,6 +13,7 @@ const BlogArray = [
     postNum: 6,
     title: "Aggregation Pipelines & Rendering Relevant Data",
     date: "June 18, 2024",
+    postType: "Project Documenting",
     textBody:
       "I am so excited to move on to the next part of the project. I was able to upload UIDs and post content to MongoDB and render that to the page. Now I am able to lookup data from both collections and push it to my client side in a nice object I can easily render on the DOM to show a typical data like the username, post content, and date posted. My next step will be to build a project page to edit user information, and determine how I want to render data like a traditional timeline does in small batches.",
   },

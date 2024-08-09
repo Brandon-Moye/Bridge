@@ -3,6 +3,14 @@
   grid-template-columns: 1.25fr 1fr;
 }
 
+.navigation {
+  display: flex;
+  justify-content: flex-end;
+  position: sticky;
+  top: 0;
+  background-color: #fff;
+}
+
 .diagram {
   width: 100%;
 }

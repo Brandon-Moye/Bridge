@@ -13,7 +13,13 @@ import { useState, useContext } from "react";
 import { async } from "@firebase/util";
 import { Link } from "react-router-dom";
 import { Button, Modal, Box, styled } from "@mui/material";
-import { GreenButton, RedButton, YellowButton, NavButton } from "./MuiCustom";
+import {
+  GreenButton,
+  RedButton,
+  YellowButton,
+  NavButton,
+  CustomBox,
+} from "./MuiCustom";
 import "./Dashboard.css";
 
 export default function Dashboard() {
@@ -113,10 +119,10 @@ export default function Dashboard() {
   };
   const style = {
     position: "absolute",
-    top: "50%",
-    left: "50%",
+    top: "25%",
+    left: "22.5%",
     transform: "translate(-50%, -50%)",
-    width: 400,
+    width: "20rem",
     bgcolor: "background.paper",
     border: "2px solid #000",
     boxShadow: 24,
@@ -147,72 +153,88 @@ export default function Dashboard() {
           Logout
         </NavButton>
       </nav>
-      <p className="welcome">Track your gratitudes below</p>
-      <GreenButton onClick={openPostModal} variant="contained" size="small">
-        Gratitude
-      </GreenButton>
-      <Modal
-        open={postModalVisible}
-        onClose={(event, reason) => {
-          if (reason !== "backdropClick") {
-            closePostModal();
-          }
-        }}
-      >
-        <Box sx={style}>
-          <textarea
-            value={postContent}
-            onChange={(e) => setPostContent(e.target.value)}
-            name=""
-            id=""
-            cols="30"
-            rows="10"
-          ></textarea>
-          <GreenButton onClick={handleSubmit} variant="contained" size="small">
-            Post
-          </GreenButton>
-          <YellowButton
-            onClick={closePostModal}
+      <div className="mainPageContainer">
+        <img src="/img/architecture.svg" className="diagram"></img>
+        <div className="dashboardContainer">
+          <p className="welcome">Track your gratitudes below</p>
+          <GreenButton
+            onClick={openPostModal}
             variant="contained"
             size="small"
+            className="newButton"
           >
-            Discard
-          </YellowButton>
-        </Box>
-      </Modal>
-      <Modal
-        open={editModalVisible}
-        onClose={(event, reason) => {
-          if (reason !== "backdropClick") {
-            closePostModal();
-          }
-        }}
-      >
-        <Box sx={style}>
-          <textarea
-            value={editPostText}
-            onChange={(e) => setEditPostText(e.target.value)}
-            name=""
-            id=""
-            cols="30"
-            rows="10"
-          ></textarea>
-          <GreenButton onClick={handleUserUpdatePost} size="small">
-            Update
+            New
           </GreenButton>
-          <YellowButton
-            onClick={closeEditModal}
-            variant="contained"
-            size="small"
+          <Modal
+            open={postModalVisible}
+            onClose={(event, reason) => {
+              if (reason !== "backdropClick") {
+                closePostModal();
+              }
+            }}
           >
-            Discard
-          </YellowButton>
-        </Box>
-      </Modal>
+            <CustomBox>
+              <textarea
+                value={postContent}
+                onChange={(e) => setPostContent(e.target.value)}
+                name=""
+                id=""
+                cols="30"
+                rows="10"
+                className="postTextArea"
+              ></textarea>
+              <GreenButton
+                onClick={handleSubmit}
+                variant="contained"
+                size="small"
+              >
+                Post
+              </GreenButton>
+              <YellowButton
+                onClick={closePostModal}
+                variant="contained"
+                size="small"
+              >
+                Discard
+              </YellowButton>
+            </CustomBox>
+          </Modal>
+          <Modal
+            open={editModalVisible}
+            onClose={(event, reason) => {
+              if (reason !== "backdropClick") {
+                closePostModal();
+              }
+            }}
+          >
+            <CustomBox>
+              <textarea
+                value={editPostText}
+                onChange={(e) => setEditPostText(e.target.value)}
+                name=""
+                id=""
+                cols="30"
+                rows="10"
+                className="postTextArea"
+              ></textarea>
+              <GreenButton onClick={handleUserUpdatePost} size="small">
+                Update
+              </GreenButton>
+              <YellowButton
+                onClick={closeEditModal}
+                variant="contained"
+                size="small"
+              >
+                Discard
+              </YellowButton>
+            </CustomBox>
+          </Modal>
 
-      <p>{isLoadingData ? "loading..." : ""}</p>
-      {/* <p>{data ? "I got it!" : "I don't got it"}</p> */}
-      <div className="gratitudeComponentContainer">{gratitudesFeed}</div>
+          <p>{isLoadingData ? "loading..." : ""}</p>
+          {/* <p>{data ? "I got it!" : "I don't got it"}</p> */}
+          <div className="gratitudeComponentContainer">{gratitudesFeed}</div>
+        </div>
+      </div>
     </div>
   );
 }

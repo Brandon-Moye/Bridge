@@ -3,6 +3,11 @@
   grid-template-columns: 1.25fr 1fr;
 }
 
+.navigation {
+  display: flex;
+  justify-content: flex-end;
+}
+
 .diagram {
   width: 100%;
 }

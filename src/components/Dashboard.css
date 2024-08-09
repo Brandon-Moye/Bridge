@@ -1,4 +1,37 @@
+.mainPageContainer {
+  display: grid;
+  grid-template-columns: 1.25fr 1fr;
+}
+
+.diagram {
+  width: 100%;
+}
+
+.welcome,
+.newButton {
+  margin-left: 0.5rem;
+}
+
+.dashboardContainer {
+  width: 100%;
+  /* justify-self: flex-end; */
+}
+
 .gratitudeComponentContainer {
   overflow: scroll;
   max-height: 35rem;
+  padding: 0.5rem;
+  grid-column: 2;
+}
+
+.postTextArea {
+  grid-column: 1 / -1;
+  font-family: Lato, "sans-serif";
+}
+
+@media (max-width: 900px) {
+  .mainPageContainer {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
 }

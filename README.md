@@ -1,5 +1,6 @@
 # Bridge
 
+### High Level Architecture
 ![Bridge high level architecture](./img/architecture.svg)
 
 [Bridge the gap with Bridge the app](https://bridgetheapp.us/login)

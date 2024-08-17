@@ -1,4 +1,0 @@
-[[headers]]
-  for = "/img/*.svg"
-  [headers.values]
-    Content-Type = "image/svg+xml"

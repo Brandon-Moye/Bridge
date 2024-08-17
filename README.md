@@ -1,5 +1,7 @@
 # Bridge
 
+![Bridge high level architecture](./Bridge/img/architecture.svg)
+
 [Bridge the gap with Bridge the app](https://bridgetheapp.us/login)
 
 Currently under construction - More details coming soon

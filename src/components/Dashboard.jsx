@@ -154,7 +154,10 @@ export default function Dashboard() {
         </NavButton>
       </nav>
       <div className="mainPageContainer">
-        <img src="/img/architecture.drawio.svg" className="diagram"></img>
+        <img
+          src="https://raw.githubusercontent.com/Brandon-Moye/Bridge/master/img/architecture.svg"
+          className="diagram"
+        ></img>
         <div className="dashboardContainer">
           <p className="welcome">Track your gratitudes below</p>
           <GreenButton

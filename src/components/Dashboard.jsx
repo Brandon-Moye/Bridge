@@ -154,7 +154,7 @@ export default function Dashboard() {
         </NavButton>
       </nav>
       <div className="mainPageContainer">
-        <img src="/img/architecture.svg" className="diagram"></img>
+        <embed src="/img/architecture.svg" className="diagram"></embed>
         <div className="dashboardContainer">
           <p className="welcome">Track your gratitudes below</p>
           <GreenButton

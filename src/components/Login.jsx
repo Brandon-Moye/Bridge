@@ -71,7 +71,7 @@ export default function Login() {
       await doLoginRealm();
       await login("demo@mail.com", "123456aA$$$$");
       navigate("/");
-      console.log("Demo login successful");
+      handleSubmitTrigger();
     } catch (error) {
       console.error("DemoLogin Error:", error);
       setError("Demo login failed.");

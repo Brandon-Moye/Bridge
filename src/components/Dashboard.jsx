@@ -23,7 +23,7 @@ import {
 import "./Dashboard.css";
 
 export default function Dashboard() {
-  const { data, isLoadingData, justYourData, handleSubmitTrigger } =
+  const { isLoadingData, justYourData, handleSubmitTrigger } =
     useContext(DataContext);
   const [error, setError] = useState();
   const [postContent, setPostContent] = useState(""); //state to hold post
@@ -234,7 +234,6 @@ export default function Dashboard() {
           </Modal>
 
           <p>{isLoadingData ? "loading..." : ""}</p>
-          {/* <p>{data ? "I got it!" : "I don't got it"}</p> */}
           <div className="gratitudeComponentContainer">{gratitudesFeed}</div>
         </div>
       </div>

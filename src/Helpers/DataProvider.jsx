@@ -32,6 +32,7 @@ const DataProvider = ({ children }) => {
       setJustYourData(justYourData);
       setUserProfileData(userProfileData);
       setIsLoadingData(false);
+      console.log("I made it this far")
     }
 
     loadData();

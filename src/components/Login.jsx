@@ -62,6 +62,22 @@ export default function Login() {
     }
     setLoading(false);
   }
+
+  async function DemoLogin(e) {
+    e.preventDefault();
+    setError("");
+  
+    try {
+      await doLoginRealm();
+      await login("demo@mail.com", "123456aA$$$$");
+      navigate("/");
+      console.log("Demo login successful");
+    } catch (error) {
+      console.error("DemoLogin Error:", error);
+      setError("Demo login failed.");
+    }
+  }
+  
   const handleCloseSnackbar = (reason) => {
     if (reason === "clickaway") {
       return;
@@ -116,6 +132,7 @@ export default function Login() {
           Check out the Blog
         </Link>
       </div>
+        <button className="loginButtonForDemo" type="button" onClick={DemoLogin}>Login with Demo Credentials</button>
     </div>
   );
 }

@@ -16,10 +16,29 @@
 .passwordRequirementsCaption,
 .passwordConfirmLabel,
 .passwordConfirmInput,
-.signupButton {
+.SignupButtonContainer {
   grid-column: 1/-1;
 }
 
+.nameLabel,
+.emailLabel,
+.passwordLabel,
+.passwordConfirmLabel {
+  font-size: 1.5rem;
+}
+
+.nameInput,
+.emailInput,
+.passwordInput,
+.passwordConfirmInput {
+  box-shadow: 0rem 0.1rem 0.35rem 0.05rem rgb(122, 122, 122);
+  border: none;
+  font-size: 1.25rem;
+}
+
+.passwordInput {
+  margin-bottom: 1rem;
+}
 .nameInput,
 .emailInput,
 .passwordInput,
@@ -28,7 +47,16 @@
   border-radius: 5px;
 }
 
+.SignupButtonContainer {
+  display: grid;
+  justify-content: center;
+}
+
 .blogLinkWrapper {
   display: flex;
   justify-content: center;
+}
+
+.link {
+  color: #3b5d8a;
 }

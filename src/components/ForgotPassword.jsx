@@ -1,6 +1,9 @@
 import React, { useRef, useState } from "react";
 import { useAuth } from "../context/AuthContext";
 import { Link } from "react-router-dom";
+import { BlueButton } from "./MuiCustom";
+
+import "./ForgotPassword.css";
 
 export default function ForgotPassword() {
   const emailRef = useRef();
@@ -37,25 +40,22 @@ export default function ForgotPassword() {
           placeholder="Email"
           ref={emailRef}
         ></input>
-        <button
-          disabled={loading}
-          className="resetPasswordButton"
-          type="submit"
-        >
-          Get password reset email
-        </button>
-        <Link to="/login" className="loginLink">
+        <div className="SubmitButtonContainer resetButton">
+          <BlueButton className="loginButton" type="submit" disabled={loading}>
+            Submit
+          </BlueButton>
+        </div>
+
+        <Link to="/login" className="loginLink link">
           Login
         </Link>
-        <Link to="/signup" className="signupLink">
+        <Link to="/signup" className="signupLink link">
           Signup
         </Link>
-      </form>
-      <div className="blogLinkWrapper">
-        <Link className="blogLink" to="/blog">
+        <Link className="blogLink link" to="/blog">
           Check out the Blog
         </Link>
-      </div>
+      </form>
     </div>
   );
 }

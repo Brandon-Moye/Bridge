@@ -4,7 +4,6 @@
   grid-template-columns: 1fr 1fr;
   gap: 0.75rem;
   max-width: 30rem;
-  margin-top: 7.5rem;
 }
 .welcomeTitle,
 .nameLabel,

@@ -159,7 +159,6 @@ export default function Dashboard() {
           className="diagram"
         ></img>
         <div className="dashboardContainer">
-          <p className="welcome">Track your gratitudes below</p>
           <GreenButton
             onClick={openPostModal}
             variant="contained"

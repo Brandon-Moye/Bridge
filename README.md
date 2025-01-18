@@ -5,8 +5,6 @@
 ### High Level Architecture
 ![Bridge high level architecture](./img/architecture.svg)
 
-Currently under construction - More details coming soon
-
 This project is my next step in my learning development. Please read below on the functionality and features. My new favorite thing is MongoDB and it has been a blast learning this technology!
 
 ### MongoDB 🍃 | Firebase 🔥 | MUI Component Library 🔌  
@@ -32,6 +30,3 @@ Connecting MongoDB to the code base
 
 ### Firebase Flow
 - Firebase handles the signup, login, logout, and password changing functionality
-
-### Stay Positive
-The intended use for this app is for users to daily (or more) record their gratitudes. 

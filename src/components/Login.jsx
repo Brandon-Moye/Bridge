@@ -9,6 +9,7 @@ import "./Login.css";
  * need to figure out why it looks like Google might be catching the error before me on signup
  */
 import { Alert, AlertTitle, Snackbar } from "@mui/material";
+import { GreenButton, BlueButton } from "./MuiCustom";
 export default function Login() {
   const { handleSubmitTrigger } = useContext(DataContext);
   const emailRef = useRef();
@@ -66,7 +67,7 @@ export default function Login() {
   async function DemoLogin(e) {
     e.preventDefault();
     setError("");
-  
+
     try {
       await doLoginRealm();
       await login("demo@mail.com", "123456aA$$$$");
@@ -77,7 +78,7 @@ export default function Login() {
       setError("Demo login failed.");
     }
   }
-  
+
   const handleCloseSnackbar = (reason) => {
     if (reason === "clickaway") {
       return;
@@ -116,23 +117,32 @@ export default function Login() {
           type="password"
           ref={passwordRef}
         ></input>
+        <div className="ButtonContainer loginButton">
+          <BlueButton className="loginButton" type="submit" disabled={loading}>
+            Login
+          </BlueButton>
+        </div>
 
-        <button className="loginButton" type="submit" disabled={loading}>
-          Login
-        </button>
-        <Link className="signupLink" to="/signup">
+        <div className="ButtonContainer demoButton">
+          <GreenButton
+            size="large"
+            className="loginButtonForDemo"
+            onClick={DemoLogin}
+          >
+            Demo
+          </GreenButton>
+        </div>
+        <Link className="signupLink link" to="/signup">
           Signup
         </Link>
-        <Link className="forgotPasswordLink" to="/forgotPassword">
+        <Link className="forgotPasswordLink link" to="/forgotPassword">
           Forgot Password?
         </Link>
-      </form>
-      <div className="blogLinkWrapper">
-        <Link className="blogLink" to="/blog">
+
+        <Link className="blogLink link" to="/blog">
           Check out the Blog
         </Link>
-      </div>
-        <button className="loginButtonForDemo" type="button" onClick={DemoLogin}>Login with Demo Credentials</button>
+      </form>
     </div>
   );
 }

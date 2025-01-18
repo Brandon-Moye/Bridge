@@ -1,24 +1,56 @@
 .loginForm {
-  margin: 3rem 3rem 3rem 3rem;
+  margin: 0 auto;
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr;
   gap: 0.5rem;
+  max-width: 30rem;
+  margin-bottom: 1rem;
 }
 .welcomeTitle,
 .emailLabel,
 .emailInput,
 .passwordLabel,
-.passwordInput,
-.loginButton {
+.passwordInput {
   grid-column: 1/-1;
+}
+
+.emailLabel,
+.passwordLabel {
+  font-size: 1.5rem;
+}
+
+.emailInput,
+.passwordInput {
+  box-shadow: 0rem 0.1rem 0.35rem 0.05rem rgb(122, 122, 122);
+  border: none;
+  font-size: 1.25rem;
+}
+
+.passwordInput {
+  margin-bottom: 1rem;
+}
+.demoButton {
+  grid-column: 3;
 }
 
 .blogLinkWrapper {
   display: flex;
   justify-content: center;
+  margin-bottom: 1rem;
 }
 
 .welcomeTitle {
-  color: blue;
+  color: #3b5d8a;
   font-weight: 600;
+  font-size: 2rem;
+}
+
+.ButtonContainer {
+  display: grid;
+  justify-content: center;
+  margin-bottom: 1rem;
+}
+
+.link {
+  color: #3b5d8a;
 }

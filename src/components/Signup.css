@@ -26,11 +26,9 @@
 .passwordConfirmInput {
   height: 1.75rem;
   border-radius: 5px;
-  border: 1px solid black;
 }
 
 .blogLinkWrapper {
   display: flex;
   justify-content: center;
 }
-

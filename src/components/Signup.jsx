@@ -8,6 +8,7 @@ import {
 } from "../Helpers/Mongo";
 
 import { Alert, AlertTitle, Snackbar } from "@mui/material";
+import { BlueButton } from "./MuiCustom";
 import "./Signup.css";
 
 export default function Signup() {
@@ -103,7 +104,7 @@ export default function Signup() {
         regex: /[!@#$%^&*(),.?":{}|<>]/,
         passwordError: "one special character",
       },
-      { regex: /.{12}/, passwordError: `at least ${minLength} characters` },
+      { regex: /.{10}/, passwordError: `at least ${minLength} characters` },
     ];
 
     const criteriaNotMet = criteria.filter(
@@ -135,7 +136,7 @@ export default function Signup() {
       </Snackbar>
       <form onSubmit={handleSubmit} className="signupForm">
         <h3 className="welcomeTitle">Signup to Join!</h3>
-        <label className="nameLable" htmlFor="nameInput">
+        <label className="nameLabel" htmlFor="nameInput">
           Name
         </label>
         <input
@@ -178,13 +179,15 @@ export default function Signup() {
           ref={passwordConfirmRef}
         ></input>
 
-        <button disabled={loading} className="signupButton" type="submit">
-          Signup
-        </button>
-        <Link className="loginLink" to="/login">
+        <div className="SignupButtonContainer">
+          <BlueButton className="signupButton" type="submit" disabled={loading}>
+            Signup
+          </BlueButton>
+        </div>
+        <Link className="loginLink link" to="/login">
           Login
         </Link>
-        <Link className="blogLink" to="/blog">
+        <Link className="blogLink link" to="/blog">
           Check out the Blog
         </Link>
       </form>
